@@ -80,7 +80,6 @@
     <ClCompile Include="Engine\Transform.cpp">
       <Filter>01Engine\GameObject</Filter>
     </ClCompile>
-    <ClCompile Include="TestScene.cpp" />
     <ClCompile Include="Engine\Audio.cpp">
       <Filter>01Engine\ResourceManager</Filter>
     </ClCompile>
@@ -96,6 +95,9 @@
     <ClCompile Include="Engine\VFX.cpp">
       <Filter>01Engine\ResourceManager</Filter>
     </ClCompile>
+    <ClCompile Include="BackGround.cpp" />
+    <ClCompile Include="PlayScene.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="Socket.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -153,7 +155,6 @@
     <ClInclude Include="Engine\Transform.h">
       <Filter>01Engine\GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="TestScene.h" />
     <ClInclude Include="Engine\Audio.h">
       <Filter>01Engine\ResourceManager</Filter>
     </ClInclude>
@@ -169,6 +170,9 @@
     <ClInclude Include="Engine\VFX.h">
       <Filter>01Engine\ResourceManager</Filter>
     </ClInclude>
+    <ClInclude Include="BackGround.h" />
+    <ClInclude Include="PlayScene.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="Socket.h" />
   </ItemGroup>
   <ItemGroup>
