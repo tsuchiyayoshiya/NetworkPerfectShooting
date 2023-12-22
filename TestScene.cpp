@@ -9,7 +9,6 @@ PlayScene::PlayScene(GameObject * parent)
 //‰Šú‰»
 void PlayScene::Initialize()
 {
-	Instantiate<BackGround>;
 }
 
 //XV
