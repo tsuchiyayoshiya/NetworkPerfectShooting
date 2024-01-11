@@ -1,5 +1,5 @@
 #include "Socket.h"
-
+/*
 bool Socket::Init()
 {
 	return WSAGetLastError();
@@ -23,6 +23,7 @@ bool Socket::Send(SendElement _elem)
 
 bool Socket::Recv(SendElement* _elem)
 {
+/*
 	SendElement recvElem;
 	int ret;
 
@@ -37,6 +38,7 @@ bool Socket::Recv(SendElement* _elem)
 	// 成功時は受信データをバイトオーダーに変換
 	*_elem = ntohl((u_long)recvElem.playerPos.position_.x);
 	return WSAGetLastError();
+	
 }
 
 void Socket::TransByteOrder()
@@ -47,3 +49,4 @@ bool Socket::Exit()
 {
 	return WSAGetLastError();
 }
+*/

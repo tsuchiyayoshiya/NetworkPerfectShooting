@@ -1,27 +1,27 @@
-#include "PlayScene.h"
+#include "TestScene.h"
 #include"BackGround.h"
 //コンストラクタ
-PlayScene::PlayScene(GameObject * parent)
-	: GameObject(parent, "PlayScene")
+TestScene::TestScene(GameObject * parent)
+	: GameObject(parent, "TestScene")
 {
 }
 
 //初期化
-void PlayScene::Initialize()
+void TestScene::Initialize()
 {
 }
 
 //更新
-void PlayScene::Update()
+void TestScene::Update()
 {
 }
 
 //描画
-void PlayScene::Draw()
+void TestScene::Draw()
 {
 }
 
 //開放
-void PlayScene::Release()
+void TestScene::Release()
 {
 }
