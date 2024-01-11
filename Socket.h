@@ -28,7 +28,7 @@ public:
 	bool Connect(std::string serverIpv4Address, unsigned short port);
 	bool Send(SendElement _elem);
 	bool Recv(SendElement *_elem);
-	void TransByteOrder();
+	void TransByteOrder(SendElement* _aftElem, SendElement _BfoElem);
 	bool Exit();
 };
 
