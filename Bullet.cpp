@@ -22,7 +22,16 @@ void Bullet::Initialize()
 //XV
 void Bullet::Update()
 {
-    transform_.position_.y += 0.01;
+    transform_.position_.z += move_.z;
+    transform_.position_.y += move_.y;
+    transform_.position_.x += move_.x;
+
+    move_.y += 0.01f;
+
+    if (transform_.position_.z > 20.0f)
+    {
+        KillMe();
+    }
 }
 
 //•`‰æ
@@ -37,8 +46,7 @@ void Bullet::Release()
 {
 }
 /*
-void Bullet::GetPosition(float Bpos_)
-{
-       return Bpos;
+int GetBulletPosition() {
+    return Bpos;
 }
 */

@@ -1,10 +1,10 @@
 #pragma once
 #include "Engine/GameObject.h"
 //テストシーンを管理するクラス
-class Bullet : public GameObject//, Socket
+class Bullet : public GameObject //,Socket
 {
 	int hPict_;    //画像番号
-	float Bpos;
+	XMFLOAT3 move_;
 public:
 	//コンストラクタ
 	//引数：parent  親オブジェクト（SceneManager）
@@ -22,5 +22,5 @@ public:
 	//開放
 	void Release() override;
 
-	//void GetPosition(float Bpos_);
+	void SetMove(XMFLOAT3 move) { move_ = move; }
 };

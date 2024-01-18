@@ -6,6 +6,7 @@
 #include <WinSock2.h>
 #include <WS2tcpip.h>
 #include "Engine/Transform.h"
+#include "Bullet.h"
 
 #pragma comment( lib, "ws2_32.lib")
 

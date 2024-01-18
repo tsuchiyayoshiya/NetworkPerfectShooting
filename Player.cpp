@@ -1,5 +1,6 @@
 #include "Player.h"
 #include "Bullet.h"
+#include "Engine/Model.h"
 #include "Engine/Image.h"
 #include "Engine/Input.h"
 
@@ -42,7 +43,13 @@ void Player::Update()
 
     if (Input::IsKeyDown(DIK_SPACE))
     {
+        XMFLOAT3 cannonTop = Model::GetBonePosition(hPict_, "Top");
+        XMVECTOR vTop = XMLoadFloat3(&cannonTop);
+        XMFLOAT3 move;
+
         Bullet* pBullet = Instantiate<Bullet>(GetParent()->GetParent());
+        pBullet->SetPosition(cannonTop);
+        pBullet->SetMove(move);
     }
 }
 
