@@ -1,10 +1,14 @@
 #pragma once
 #include "Engine/GameObject.h"
 
+#pragma comment( lib, "ws2_32.lib")
+
+class Socket;
+
 //テストシーンを管理するクラス
 class PlayScene : public GameObject
 {
-	int hPict_;    //画像番号
+	Socket* sock_;
 public:
 	//コンストラクタ
 	//引数：parent  親オブジェクト（SceneManager）

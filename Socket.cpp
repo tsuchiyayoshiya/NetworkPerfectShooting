@@ -1,5 +1,31 @@
 #include "Socket.h"
-/*
+
+Socket::Socket()
+{
+	// 初期化
+	if (!Init())
+	{
+		std::cout << "Error: Init()" << std::endl;
+	}
+	std::cout << "Success: Init()" << std::endl;
+
+
+	// ノンブロッキングソケットの作成
+	if (!InitSocket(SOCK_STREAM))
+	{
+		std::cout << "Error:Socket()" << std::endl;
+	}
+	std::cout << "Success: Socket()" << std::endl;
+
+
+	// 接続要求
+	if (!Connect("127.0.0.1", SERVERPORT))
+	{
+		std::cout << "Error:Connect()" << std::endl;
+	}
+	std::cout << "Success: Connect()" << std::endl;
+}
+
 bool Socket::Init()
 {
 	WSADATA wsaData;
@@ -39,13 +65,22 @@ bool Socket::Connect(std::string serverIpv4Address, unsigned short port)
 
 bool Socket::Send(SendElement _elem)
 {
-	
+	SendElement sendValue;	
+	TransByteOrder(&sendValue, _elem);// 送信データ ... ネットワークバイトオーダーに変換後の値を格納
+	int ret;		// 成否の判定用
+	// 送信
+	ret = send(sock, (char*)&sendValue, sizeof(sendValue), 0);
+	// 失敗
+	if (ret != sizeof(sendValue))
+	{
+		return false;
+	}
+
 	return WSAGetLastError();
 }
 
 bool Socket::Recv(SendElement* _elem)
 {
-/*
 	SendElement recvElem;
 	int ret;
 
@@ -96,4 +131,3 @@ bool Socket::Exit()
 {
 	return WSAGetLastError();
 }
-*/

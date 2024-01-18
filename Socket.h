@@ -24,6 +24,7 @@ class Socket
 {
 	int sock;
 public:
+	Socket();
 	bool Init();
 	bool InitSocket(int sockType);
 	bool Connect(std::string serverIpv4Address, unsigned short port);
