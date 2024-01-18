@@ -1,13 +1,14 @@
 #include "PlayScene.h"
-#include"BackGround.h"
-#include"Player.h"
+#include "BackGround.h"
+#include "Player.h"
 #include "Engine/Image.h"
-
+//#include "Socket.h"
 
 //コンストラクタ
 PlayScene::PlayScene(GameObject* parent)
-    : GameObject(parent, "PlayScene"), hPict_(-1)
+    : GameObject(parent, "PlayScene"), sock_(new Socket())
 {
+
 }
 
 //初期化

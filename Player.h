@@ -1,6 +1,8 @@
 #pragma once
 #include "Engine/GameObject.h"
 
+
+
 //テストシーンを管理するクラス
 class Player : public GameObject
 {
