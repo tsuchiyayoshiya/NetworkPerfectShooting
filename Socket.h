@@ -6,8 +6,6 @@
 #include <WS2tcpip.h>
 #include <cstdlib>
 #include "Engine/Transform.h"
-#include "Bullet.h"
-
 
 #pragma comment( lib, "ws2_32.lib")
 
@@ -34,4 +32,3 @@ public:
 	void TransByteOrder(SendElement* _aftElem, SendElement _BfoElem);
 	bool Exit();
 };
-*/
