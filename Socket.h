@@ -32,4 +32,3 @@ public:
 	void TransByteOrder(SendElement* _aftElem, SendElement _BfoElem);
 	bool Exit();
 };
-*/
