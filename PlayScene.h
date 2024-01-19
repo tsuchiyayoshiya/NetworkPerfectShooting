@@ -1,7 +1,9 @@
+#ifndef _WINSOCKAPI_
+#define _WINSOCKAPI_
+#endif
+
 #pragma once
 #include "Engine/GameObject.h"
-
-#pragma comment( lib, "ws2_32.lib")
 
 class Socket;
 

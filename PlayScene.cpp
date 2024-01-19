@@ -2,7 +2,7 @@
 #include "BackGround.h"
 #include "Player.h"
 #include "Engine/Image.h"
-//#include "Socket.h"
+#include "Socket.h"
 
 //コンストラクタ
 PlayScene::PlayScene(GameObject* parent)

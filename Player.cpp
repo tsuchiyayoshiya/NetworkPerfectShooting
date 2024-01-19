@@ -45,7 +45,7 @@ void Player::Update()
     {
         XMFLOAT3 cannonTop = Model::GetBonePosition(hPict_, "Top");
         XMVECTOR vTop = XMLoadFloat3(&cannonTop);
-        XMFLOAT3 move;
+        XMFLOAT3 move = XMFLOAT3(0, 0, 0);
 
         Bullet* pBullet = Instantiate<Bullet>(GetParent()->GetParent());
         pBullet->SetPosition(cannonTop);
