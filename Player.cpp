@@ -43,13 +43,8 @@ void Player::Update()
 
     if (Input::IsKeyDown(DIK_SPACE))
     {
-        XMFLOAT3 cannonTop = Model::GetBonePosition(hPict_, "Top");
-        XMVECTOR vTop = XMLoadFloat3(&cannonTop);
-        XMFLOAT3 move;
-
-        Bullet* pBullet = Instantiate<Bullet>(GetParent()->GetParent());
-        pBullet->SetPosition(cannonTop);
-        pBullet->SetMove(move);
+        Bullet* pBullet = Instantiate<Bullet>(GetParent());
+        pBullet->SetPosition(transform_.position_);
     }
 }
 

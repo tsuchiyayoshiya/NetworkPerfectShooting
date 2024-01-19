@@ -1,5 +1,5 @@
 #include "Socket.h"
-
+/*
 Socket::Socket()
 {
 	// ‰Šú‰»
@@ -131,3 +131,4 @@ bool Socket::Exit()
 {
 	return WSAGetLastError();
 }
+*/
