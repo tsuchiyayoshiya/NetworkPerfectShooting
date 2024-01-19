@@ -50,6 +50,8 @@ void Player::Update()
         Bullet* pBullet = Instantiate<Bullet>(GetParent()->GetParent());
         pBullet->SetPosition(cannonTop);
         pBullet->SetMove(move);
+        Bullet* pBullet = Instantiate<Bullet>(GetParent());
+        pBullet->SetPosition(transform_.position_);
     }
 }
 

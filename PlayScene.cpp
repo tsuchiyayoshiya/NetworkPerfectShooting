@@ -6,7 +6,7 @@
 
 //コンストラクタ
 PlayScene::PlayScene(GameObject* parent)
-    : GameObject(parent, "PlayScene"), sock_(new Socket())
+    : GameObject(parent, "PlayScene")//, sock_(new Socket())
 {
 
 }
@@ -25,8 +25,7 @@ void PlayScene::Update()
 
 //描画
 void PlayScene::Draw()
-{
-    
+{  
 }
 
 //開放

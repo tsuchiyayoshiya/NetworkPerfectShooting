@@ -22,12 +22,7 @@ void Bullet::Initialize()
 //XV
 void Bullet::Update()
 {
-    transform_.position_.z += move_.z;
-    transform_.position_.y += move_.y;
-    transform_.position_.x += move_.x;
-
-    move_.y += 0.01f;
-
+    transform_.position_.y += 0.01f;
     if (transform_.position_.z > 20.0f)
     {
         KillMe();
