@@ -23,6 +23,7 @@ void BackGround::Update()
 //•`‰æ
 void BackGround::Draw()
 {
+    
     Image::SetTransform(hPict_, transform_);
     Image::Draw(hPict_);
 }

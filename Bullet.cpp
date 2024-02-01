@@ -15,14 +15,14 @@ void Bullet::Initialize()
    // transform_.position_ = { 0,-0.5,0 };
 
     //画像データのロード
-    hPict_ = Image::Load("Bullet.png");
+    hPict_ = Image::Load("Bullet.jpg");
     assert(hPict_ >= 0);
 }
 
 //更新
 void Bullet::Update()
 {
-    transform_.position_.y += 0.01f;
+    transform_.position_.x += 0.1f;
     if (transform_.position_.z > 20.0f)
     {
         KillMe();

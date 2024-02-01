@@ -5,12 +5,12 @@
 #pragma once
 #include "Engine/GameObject.h"
 
-class Socket;
+//class Socket;
 
 //テストシーンを管理するクラス
 class PlayScene : public GameObject
 {
-	Socket* sock_;
+	//Socket* sock_;
 public:
 	//コンストラクタ
 	//引数：parent  親オブジェクト（SceneManager）

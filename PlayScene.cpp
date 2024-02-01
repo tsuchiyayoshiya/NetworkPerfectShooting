@@ -1,6 +1,7 @@
 #include "PlayScene.h"
 #include "BackGround.h"
 #include "Player.h"
+#include "Boss.h"
 #include "Engine/Image.h"
 #include "Socket.h"
 
@@ -16,6 +17,7 @@ void PlayScene::Initialize()
 {
     Instantiate<BackGround>(this);
     Instantiate<Player>(this);
+    Instantiate<Boss>(this);
 }
 
 //çXêV
