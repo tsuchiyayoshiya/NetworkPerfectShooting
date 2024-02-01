@@ -15,6 +15,7 @@ void Player::Initialize()
 {
     transform_.scale_ = { 0.2,0.2,0.2 };
     transform_.position_ = { 0,-0.5,0 };
+    transform_.rotate_ = { 0,0,270 };
 
     //画像データのロード
     hPict_ = Image::Load("Player.jpg");

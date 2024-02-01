@@ -1,6 +1,7 @@
 #include "PlayScene.h"
 #include "BackGround.h"
 #include "Player.h"
+#include "Boss.h"
 #include "Engine/Image.h"
 #include "Socket.h"
 
@@ -21,6 +22,8 @@ void PlayScene::Initialize()
         text_ = "Error:Init()";
     }
     text_ = "Success:Init()";
+    Instantiate<Boss>(this);
+}
 
     if (!sock_->InitSocket(SOCK_STREAM))
     {

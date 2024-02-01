@@ -6,7 +6,7 @@
 #include <WS2tcpip.h>
 #include <cstdlib>
 #include "Engine/Transform.h"
-
+/*
 #pragma comment( lib, "ws2_32.lib")
 
 const unsigned short SERVERPORT = 8888;
@@ -31,4 +31,4 @@ public:
 	bool Recv(SendElement *_elem);
 	void TransByteOrder(SendElement* _aftElem, SendElement _BfoElem);
 	bool Exit();
-};
+};*/
