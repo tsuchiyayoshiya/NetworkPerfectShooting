@@ -4,6 +4,7 @@
 
 #pragma once
 #include "Engine/GameObject.h"
+#include "Engine/Text.h"
 
 class Socket;
 
@@ -11,6 +12,8 @@ class Socket;
 class PlayScene : public GameObject
 {
 	Socket* sock_;
+
+	std::string text_;
 public:
 	//コンストラクタ
 	//引数：parent  親オブジェクト（SceneManager）
@@ -28,5 +31,5 @@ public:
 	//開放
 	void Release() override;
 
-	
+	std::string GetText() { return text_; }
 };

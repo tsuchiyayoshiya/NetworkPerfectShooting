@@ -1,10 +1,14 @@
 #pragma once
 #include "Engine/GameObject.h"
 
+class Text;
+
 //テストシーンを管理するクラス
 class BackGround : public GameObject
 {
 	int hPict_;    //画像番号
+
+	Text* pText_;
 public:
 	//コンストラクタ
 	//引数：parent  親オブジェクト（SceneManager）
