@@ -32,7 +32,7 @@ void BackGround::Draw()
     Image::Draw(hPict_);
 
     PlayScene* pPS = (PlayScene*)FindObject("PlayScene");
-    pText_->Draw(300, 200, (char*)pPS->GetText());
+    pText_->Draw(300, 200, pPS->GetText().c_str());
 }
 
 //ŠJ•ú

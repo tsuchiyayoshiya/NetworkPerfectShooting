@@ -3,11 +3,12 @@
 #include "Player.h"
 #include "Boss.h"
 #include "Engine/Image.h"
-#include "Socket.h"
+//#include "Socket.h"
 
 //コンストラクタ
 PlayScene::PlayScene(GameObject* parent)
-    : GameObject(parent, "PlayScene"), sock_(new Socket()), text_("")
+    : GameObject(parent, "PlayScene")//, sock_(new Socket())
+    , text_("")
 {
 }
 
@@ -16,14 +17,13 @@ void PlayScene::Initialize()
 {
     Instantiate<BackGround>(this);
     Instantiate<Player>(this);
+    Instantiate<Boss>(this);
 
-    if (!sock_->Init())
+    /*if (!sock_->Init())
     {
         text_ = "Error:Init()";
     }
     text_ = "Success:Init()";
-    Instantiate<Boss>(this);
-}
 
     if (!sock_->InitSocket(SOCK_STREAM))
     {
@@ -35,7 +35,7 @@ void PlayScene::Initialize()
     {
         text_ = "Error:Connect()";
     }
-    text_ = "Success:Connet()";
+    text_ = "Success:Connet()";*/
 }
 
 //更新
@@ -51,8 +51,8 @@ void PlayScene::Draw()
 //開放
 void PlayScene::Release()
 {
-    if (!sock_->Exit())
+   /* if (!sock_->Exit())
     {
 
-    }
+    }*/
 }

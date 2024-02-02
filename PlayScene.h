@@ -6,7 +6,7 @@
 #include "Engine/GameObject.h"
 #include "Engine/Text.h"
 
-//class Socket;
+class Socket;
 
 //テストシーンを管理するクラス
 class PlayScene : public GameObject
