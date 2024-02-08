@@ -5,25 +5,25 @@ Socket::Socket()
 	// 初期化
 	if (!Init())
 	{
-		std::cout << "Error: Init()" << std::endl;
+		text_ = "Error: Init()";
 	}
-	std::cout << "Success: Init()" << std::endl;
+	text_ = "Success: Init()";
 
 
 	// ノンブロッキングソケットの作成
 	if (!InitSocket(SOCK_STREAM))
 	{
-		std::cout << "Error:Socket()" << std::endl;
+		text_ = "Error:Socket()";
 	}
-	std::cout << "Success: Socket()" << std::endl;
+	text_ = "Success: Socket()";
 
 
 	// 接続要求
 	if (!Connect("127.0.0.1", SERVERPORT))
 	{
-		std::cout << "Error:Connect()" << std::endl;
+		text_ = "Error:Connect()";
 	}
-	std::cout << "Success: Connect()" << std::endl;
+	text_ = "Success: Connect()";
 }
 
 bool Socket::Init()
@@ -100,31 +100,31 @@ bool Socket::Recv(SendElement* _elem)
 
 void Socket::TransByteOrder(SendElement* _aftElem, SendElement _BfoElem)
 {
-	_aftElem->playerPos.position_.x = ntohl(_BfoElem.playerPos.position_.x);
-	_aftElem->playerPos.position_.y = ntohl(_BfoElem.playerPos.position_.y);
-	_aftElem->playerPos.position_.z = ntohl(_BfoElem.playerPos.position_.z);
+	_aftElem->playerPos.position_.x = htonl(_BfoElem.playerPos.position_.x);
+	_aftElem->playerPos.position_.y = htonl(_BfoElem.playerPos.position_.y);
+	_aftElem->playerPos.position_.z = htonl(_BfoElem.playerPos.position_.z);
 
-	_aftElem->playerPos.rotate_.x = ntohl(_BfoElem.playerPos.rotate_.x);
-	_aftElem->playerPos.rotate_.y = ntohl(_BfoElem.playerPos.rotate_.y);
-	_aftElem->playerPos.rotate_.z = ntohl(_BfoElem.playerPos.rotate_.z);
+	_aftElem->playerPos.rotate_.x = htonl(_BfoElem.playerPos.rotate_.x);
+	_aftElem->playerPos.rotate_.y = htonl(_BfoElem.playerPos.rotate_.y);
+	_aftElem->playerPos.rotate_.z = htonl(_BfoElem.playerPos.rotate_.z);
 
-	_aftElem->playerPos.scale_.x = ntohl(_BfoElem.playerPos.scale_.x);
-	_aftElem->playerPos.scale_.y = ntohl(_BfoElem.playerPos.scale_.y);
-	_aftElem->playerPos.scale_.z = ntohl(_BfoElem.playerPos.scale_.z);
-	for (int i = 0; i < _aftElem->bulletPos.size(); i++)
+	_aftElem->playerPos.scale_.x = htonl(_BfoElem.playerPos.scale_.x);
+	_aftElem->playerPos.scale_.y = htonl(_BfoElem.playerPos.scale_.y);
+	_aftElem->playerPos.scale_.z = htonl(_BfoElem.playerPos.scale_.z);
+	/*for (int i = 0; i < _aftElem->bulletPos.size(); i++)
 	{
-		_aftElem->bulletPos.at(i).position_.x = ntohl(_BfoElem.bulletPos.at(i).position_.x);
-		_aftElem->bulletPos.at(i).position_.y = ntohl(_BfoElem.bulletPos.at(i).position_.y);
-		_aftElem->bulletPos.at(i).position_.z = ntohl(_BfoElem.bulletPos.at(i).position_.z);
+		_aftElem->bulletPos.at(i).position_.x = htonl(_BfoElem.bulletPos.at(i).position_.x);
+		_aftElem->bulletPos.at(i).position_.y = htonl(_BfoElem.bulletPos.at(i).position_.y);
+		_aftElem->bulletPos.at(i).position_.z = htonl(_BfoElem.bulletPos.at(i).position_.z);
 
-		_aftElem->bulletPos.at(i).rotate_.x = ntohl(_BfoElem.bulletPos.at(i).rotate_.x);
-		_aftElem->bulletPos.at(i).rotate_.y = ntohl(_BfoElem.bulletPos.at(i).rotate_.y);
-		_aftElem->bulletPos.at(i).rotate_.z = ntohl(_BfoElem.bulletPos.at(i).rotate_.z);
+		_aftElem->bulletPos.at(i).rotate_.x = htonl(_BfoElem.bulletPos.at(i).rotate_.x);
+		_aftElem->bulletPos.at(i).rotate_.y = htonl(_BfoElem.bulletPos.at(i).rotate_.y);
+		_aftElem->bulletPos.at(i).rotate_.z = htonl(_BfoElem.bulletPos.at(i).rotate_.z);
 
-		_aftElem->bulletPos.at(i).scale_.x = ntohl(_BfoElem.bulletPos.at(i).scale_.x);
-		_aftElem->bulletPos.at(i).scale_.y = ntohl(_BfoElem.bulletPos.at(i).scale_.y);
-		_aftElem->bulletPos.at(i).scale_.z = ntohl(_BfoElem.bulletPos.at(i).scale_.z);
-	}
+		_aftElem->bulletPos.at(i).scale_.x = htonl(_BfoElem.bulletPos.at(i).scale_.x);
+		_aftElem->bulletPos.at(i).scale_.y = htonl(_BfoElem.bulletPos.at(i).scale_.y);
+		_aftElem->bulletPos.at(i).scale_.z = htonl(_BfoElem.bulletPos.at(i).scale_.z);
+	}*/
 }
 
 bool Socket::Exit()

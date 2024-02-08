@@ -4,13 +4,16 @@
 #include "Boss.h"
 #include "Gauge.h"
 #include "Engine/Image.h"
-//#include "Socket.h"
+#include "Socket.h"
+
+SendElement elem_;
 
 //コンストラクタ
 PlayScene::PlayScene(GameObject* parent)
-    : GameObject(parent, "PlayScene")//, sock_(new Socket())
+    : GameObject(parent, "PlayScene"), sock_(new Socket())
     , text_("")
 {
+    text_ = sock_->GetText();
 }
 
 //初期化
@@ -26,23 +29,13 @@ void PlayScene::Initialize()
         text_ = "Error:Init()";
     }
     text_ = "Success:Init()";
-
-    if (!sock_->InitSocket(SOCK_STREAM))
-    {
-        text_ = "Error:Socket()";
-    }
-    text_ = "Success:Socket()";
-
-    if (!sock_->Connect("127.0.0.1", SERVERPORT))
-    {
-        text_ = "Error:Connect()";
-    }
-    text_ = "Success:Connet()";*/
+    elem_.playerPos = transform_;
 }
 
 //更新
 void PlayScene::Update()
 {
+    sock_->Send(elem_);
 }
 
 //描画
