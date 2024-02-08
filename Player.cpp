@@ -83,7 +83,6 @@ void Player::Draw()
     Image::SetTransform(hPict_, transform_);
     Image::Draw(hPict_);
 }
-
 //ŠJ•ú
 void Player::Release()
 {
