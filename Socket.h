@@ -22,6 +22,7 @@ struct SendElement
 class Socket
 {
 	int sock;
+	std::string text_;
 public:
 	Socket();
 	bool Init();
@@ -31,4 +32,5 @@ public:
 	bool Recv(SendElement *_elem);
 	void TransByteOrder(SendElement* _aftElem, SendElement _BfoElem);
 	bool Exit();
+	std::string GetText() { return text_; }
 };
