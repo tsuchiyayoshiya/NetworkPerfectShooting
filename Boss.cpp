@@ -27,21 +27,21 @@ void Boss::Update()
     movementCount += 1.0f;
 
     // movementCountが60を超えたらturnをtrueにし
-    if (movementCount > 20.0f) {
+    if (movementCount > 120.0f) {
         turn = true;
     }
-    if (movementCount > 40.0f)
+    if (movementCount > 240.0f)
     {
         movementCount = 0.0f;
         turn = false;
     }
     // turnがtrueの場合、プレイヤーを左に移動
     if (turn) {
-        transform_.position_.y -= 0.05f;
+        transform_.position_.y -= 0.01f;
     }
     // turnがfalseの場合、プレイヤーを右に移動
     else {
-        transform_.position_.y += 0.05f;
+        transform_.position_.y += 0.01f;
     }
 }
 

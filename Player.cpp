@@ -1,12 +1,15 @@
 #include "Player.h"
 #include "Bullet.h"
+#include "Gauge.h"
+
 #include "Engine/Model.h"
 #include "Engine/Image.h"
 #include "Engine/Input.h"
 
+
 //コンストラクタ
 Player::Player(GameObject* parent)
-    : GameObject(parent, "Player"), hPict_(-1)
+    : GameObject(parent, "Player"), hPict_(-1), nowHp_(50), maxHp_(120)
 {
 }
 
@@ -25,33 +28,58 @@ void Player::Initialize()
 //更新
 void Player::Update()
 {
+    // プレイヤーの移動処理
     if (Input::IsKey(DIK_W))
     {
-    transform_.position_.y += 0.05f;
+        if (transform_.position_.y + 0.05f < 1.0f)
+            transform_.position_.y += 0.05f;
     }
     if (Input::IsKey(DIK_S))
     {
-      transform_.position_.y -= 0.05f;
+        if (transform_.position_.y - 0.05f > -1.0f)
+            transform_.position_.y -= 0.05f;
     }
     if (Input::IsKey(DIK_A))
     {
-       transform_.position_.x -= 0.05f;
+        if (transform_.position_.x - 0.05f > -1.0f)
+            transform_.position_.x -= 0.05f;
     }
     if (Input::IsKey(DIK_D))
     {
-        transform_.position_.x += 0.05f;
+        if (transform_.position_.x + 0.05f < 1.0f)
+            transform_.position_.x += 0.05f;
     }
 
+    // スペースキーが押された場合の弾の生成処理はそのまま残す
     if (Input::IsKeyDown(DIK_SPACE))
     {
         Bullet* pBullet = Instantiate<Bullet>(GetParent());
         pBullet->SetPosition(transform_.position_);
     }
+    if (Input::IsKey(DIK_M))
+    {
+        nowHp_ += 30;
+        if (nowHp_ > maxHp_)
+        {
+            nowHp_ = maxHp_;
+        }
+    }
+    if (Input::IsKey(DIK_N))
+    {
+        nowHp_ -= 30;
+        if (nowHp_ < 0)
+        {
+            nowHp_ = 0;
+        }
+    }
+    Gauge* pGauge = (Gauge*)FindObject("Gauge");
+    pGauge->SetHp(nowHp_, maxHp_);
 }
 
 //描画
 void Player::Draw()
 {
+    //プレイヤー
     Image::SetTransform(hPict_, transform_);
     Image::Draw(hPict_);
 }

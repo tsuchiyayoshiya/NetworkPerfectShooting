@@ -2,16 +2,18 @@
 #include "Engine/GameObject.h"
 
 
-
 //テストシーンを管理するクラス
-class Player : public GameObject
+class Gauge : public GameObject
 {
 	int hPict_;    //画像番号
-	int nowHp_, maxHp_;
+	int hPictGauge_;    //画像番号
+	int hPictFrame_;    //画像番号
+
+	int maxHp_, nowHp_;
 public:
 	//コンストラクタ
 	//引数：parent  親オブジェクト（SceneManager）
-	Player(GameObject* parent);
+	Gauge(GameObject* parent);
 
 	//初期化
 	void Initialize() override;
@@ -24,4 +26,11 @@ public:
 
 	//開放
 	void Release() override;
+	
+	void SetHp(int nowHp, int maxHp)
+	{
+		nowHp_ = nowHp;
+		maxHp_ = maxHp;
+	}
+	
 };
