@@ -4,7 +4,7 @@
 
 //コンストラクタ
 Boss::Boss(GameObject* parent)
-	: GameObject(parent, "Boss"),hPict_(-1), turn(false), movementCount(1.0)
+	: GameObject(parent, "Boss"),hPict_(-1), turn(false), movementCount(1.0),hBarrage_(-1)
 {
 }
 
@@ -17,11 +17,17 @@ void Boss::Initialize()
 	//画像データのロード
 	hPict_ = Image::Load("Enemy.jpg");
 	assert(hPict_ >= 0);
+    //画像データのロード
+    hBarrage_ = Image::Load("Enemy.jpg");
+    assert(hBarrage_ >= 0);
 }
 
 //更新
 void Boss::Update()
 {
+    Bform.position_.x += 0.01f;
+
+
     // 1回動くごとに変数を増加
    // movementCountを小数で増加させる
     movementCount += 1.0f;
@@ -48,9 +54,10 @@ void Boss::Update()
 //描画
 void Boss::Draw()
 {
-	
 	Image::SetTransform(hPict_, transform_);
 	Image::Draw(hPict_);
+    Image::SetTransform(hBarrage_, transform_);
+    Image::Draw(hBarrage_);
 }
 
 //開放

@@ -1,3 +1,4 @@
+/*
 #include "Socket.h"
 
 Socket::Socket()
@@ -124,10 +125,11 @@ void Socket::TransByteOrder(SendElement* _aftElem, SendElement _BfoElem)
 		_aftElem->bulletPos.at(i).scale_.x = htonl(_BfoElem.bulletPos.at(i).scale_.x);
 		_aftElem->bulletPos.at(i).scale_.y = htonl(_BfoElem.bulletPos.at(i).scale_.y);
 		_aftElem->bulletPos.at(i).scale_.z = htonl(_BfoElem.bulletPos.at(i).scale_.z);
-	}*/
+	}
 }
 
 bool Socket::Exit()
 {
 	return WSAGetLastError();
 }
+*/
