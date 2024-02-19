@@ -64,3 +64,14 @@ void Boss::Draw()
 void Boss::Release()
 {
 }
+
+float Boss::GetRadius() const {
+    return radius_;
+}
+
+void Boss::OnCollisionEnter(GameObject* other) {
+    for(int i = 0;i<3;i++)
+    {
+    this->KillMe();
+    }
+}

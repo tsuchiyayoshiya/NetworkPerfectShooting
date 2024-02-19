@@ -11,6 +11,9 @@ class Boss : public GameObject
 	int movementCount;
 
 	Transform Bform;
+
+	float radius_; // 半径
+	// その他のメンバー変数や関数
 public:
 
 	//コンストラクタ
@@ -28,4 +31,8 @@ public:
 
 	//開放
 	void Release() override;
+
+	float GetRadius() const; // 半径を取得する関数を追加
+
+	void OnCollisionEnter(GameObject* other); // 当たり判定時の処理を行う関数
 };
