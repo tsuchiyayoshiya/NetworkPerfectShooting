@@ -1,6 +1,7 @@
 #include "Bullet.h"
 #include "Engine/Image.h"
 #include "Engine/Input.h"
+#include "Player.h"
 
 //コンストラクタ
 Bullet::Bullet(GameObject* parent)
@@ -28,6 +29,8 @@ void Bullet::Update()
     {
         KillMe();
     }
+    // 弾とボスの当たり判定を行う
+    CheckCollisionWithBoss();
 }
 
 //描画
