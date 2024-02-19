@@ -90,7 +90,7 @@ void Player::CheckCollisionWithBoss()
     // ボスとプレイヤーの当たり判定を行う
     float distanceX = std::abs(transform_.position_.x - pBoss->GetPosition().x);
     float distanceY = std::abs(transform_.position_.y - pBoss->GetPosition().y);
-    float radiusSum = 0.2f + pBoss->GetRadius(); // プレイヤーの半径とボスの半径の和
+    float radiusSum = 0.1f + pBoss->GetRadius(); 
 
     if (distanceX < radiusSum && distanceY < radiusSum)
     {
