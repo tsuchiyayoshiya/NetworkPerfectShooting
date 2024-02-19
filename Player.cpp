@@ -98,8 +98,6 @@ void Player::CheckCollisionWithBoss()
         pBoss->OnCollisionEnter(this);
     }
     */
-    
-
 }
 
 // •`‰æ

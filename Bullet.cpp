@@ -26,7 +26,7 @@ void Bullet::Update()
 {
     Boss* pBoss = dynamic_cast<Boss*>(FindObject("Boss"));
     transform_.position_.x += 0.1f;
-    if (transform_.position_.x > 0.5f)
+    if (transform_.position_.x > 0.8f)
     {
          KillMe();
     }
@@ -47,13 +47,13 @@ void Bullet::CheckCollisionWithBoss()
     float distanceX = std::abs(transform_.position_.x - pBoss->GetPosition().x);
     float distanceY = std::abs(transform_.position_.y - pBoss->GetPosition().y);
     float radiusSum = 0.1f + pBoss->GetRadius();
-    /*
+    
     if (distanceX < radiusSum && distanceY < radiusSum)
     {
         // “–‚½‚è”»’è‚ª”­¶‚µ‚½ê‡‚Ìˆ—‚ðs‚¤
         pBoss->OnCollisionEnter(this);
     }
-   */
+   
 }
 
 //•`‰æ
