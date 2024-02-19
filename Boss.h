@@ -13,6 +13,8 @@ class Boss : public GameObject
 	Transform Bform;
 
 	float radius_; // 半径
+
+	int hitCounter_; // 弾との衝突回数をカウントする変数
 	// その他のメンバー変数や関数
 public:
 

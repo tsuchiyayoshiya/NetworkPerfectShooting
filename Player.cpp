@@ -51,7 +51,7 @@ void Player::Update()
     }
 
     // スペースキーが押された場合の弾の生成処理はそのまま残す
-    if (Input::IsKeyDown(DIK_SPACE))
+    if (Input::IsKey(DIK_SPACE))
     {
         Bullet* pBullet = Instantiate<Bullet>(GetParent());
         pBullet->SetPosition(transform_.position_);
@@ -91,12 +91,15 @@ void Player::CheckCollisionWithBoss()
     float distanceX = std::abs(transform_.position_.x - pBoss->GetPosition().x);
     float distanceY = std::abs(transform_.position_.y - pBoss->GetPosition().y);
     float radiusSum = 0.1f + pBoss->GetRadius(); 
-
+    /*
     if (distanceX < radiusSum && distanceY < radiusSum)
     {
         // 当たり判定が発生した場合の処理を行う
         pBoss->OnCollisionEnter(this);
     }
+    */
+    
+
 }
 
 // 描画

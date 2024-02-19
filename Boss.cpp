@@ -1,10 +1,11 @@
 #include "Boss.h"
 #include"BackGround.h"
 #include "Engine/Image.h"
+#include "Bullet.h"
 
 //コンストラクタ
 Boss::Boss(GameObject* parent)
-	: GameObject(parent, "Boss"),hPict_(-1), turn(false), movementCount(1.0),hBarrage_(-1)
+	: GameObject(parent, "Boss"),hPict_(-1), turn(false), movementCount(1.0),hBarrage_(-1),hitCounter_(0)
 {
 }
 
@@ -70,8 +71,12 @@ float Boss::GetRadius() const {
 }
 
 void Boss::OnCollisionEnter(GameObject* other) {
-    for(int i = 0;i<3;i++)
-    {
-    this->KillMe();
+    if(dynamic_cast<Bullet*>(other)) {
+        int hitCounter_ = 0;
+        hitCounter_ += 1; // 弾との衝突回数をインクリメントする
+        if (hitCounter_ >= 3) {
+            // 弾が三回ボスに当たった場合、ボスを破壊する
+           this->KillMe();
+        }
     }
 }

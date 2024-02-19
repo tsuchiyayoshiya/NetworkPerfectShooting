@@ -19,8 +19,9 @@ PlayScene::PlayScene(GameObject* parent)
 void PlayScene::Initialize()
 {
     Instantiate<BackGround>(this);
-    Instantiate<Player>(this);
+    
     Instantiate<Boss>(this);
+    Instantiate<Player>(this);
     Instantiate<Gauge>(this);
 
     
