@@ -25,16 +25,12 @@ void Bullet::Initialize()
 //更新
 void Bullet::Update()
 {
+    
+
     transform_.position_.x += 0.1f;
     if (transform_.position_.x > 1.0f)
     {
-        // GameObjectポインタを取得
-        GameObject* obj = FindObject("Boss");
-        // ポインタが有効であり、かつBossクラスのインスタンスであることを確認
-        if () {
-            
-        }
-        KillMe();
+        
     }
 
 }

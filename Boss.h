@@ -1,6 +1,6 @@
 #pragma once
 #include "Engine/GameObject.h"
-
+#include "Bullet.h"
 
 //テストシーンを管理するクラス
 class Boss : public GameObject
@@ -9,6 +9,8 @@ class Boss : public GameObject
 	int hBarrage_; //弾幕
 	bool turn;
 	int movementCount;
+
+	//Bullet* pBullet;
 
 	Transform Bform;
 
@@ -19,15 +21,15 @@ class Boss : public GameObject
 public:
 
 	// ボスの位置を取得するゲッター
-	float GetPositionX() const { return transform_.position_.x; }
-	float GetPositionY() const { return transform_.position_.y; }
-	float GetPositionZ() const { return transform_.position_.z; }
+	float GetPositionX() const { return Bform.position_.x; }
+	float GetPositionY() const { return Bform.position_.y; }
+	float GetPositionZ() const { return Bform.position_.z; }
 
 	// ボスのサイズを取得するゲッター
-	float GetScaleX() const { return transform_.scale_.x; }
-	float GetScaleY() const { return transform_.scale_.y; }
-	float GetScaleZ() const { return transform_.scale_.z; }
-
+	float GetScaleX() const { return Bform.scale_.x; }
+	float GetScaleY() const { return Bform.scale_.y; }
+	float GetScaleZ() const { return Bform.scale_.z; }
+	
 	//コンストラクタ
 	//引数：parent  親オブジェクト（SceneManager）
 	Boss(GameObject* parent);
