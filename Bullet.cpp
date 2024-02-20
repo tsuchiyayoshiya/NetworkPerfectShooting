@@ -24,11 +24,21 @@ void Bullet::Initialize()
 //更新
 void Bullet::Update()
 {
-   
     transform_.position_.x += 0.1f;
     if (transform_.position_.x > 1.0f)
     {
-         KillMe();
+        // GameObjectポインタを取得
+        GameObject* obj = FindObject("Boss");
+        // ポインタが有効であり、かつBossクラスのインスタンスであることを確認
+        if (obj && dynamic_cast<Boss*>(obj) != nullptr) {
+            Boss* boss = static_cast<Boss*>(obj);
+            // ボスの位置に来たらボスを消す
+            if (transform_.position_.y >= boss->transform_.position_.y &&
+                transform_.position_.y <= boss->transform_.position_.y + boss->transform_.scale_.y) {
+                boss->KillMe();
+            }
+        }
+        KillMe();
     }
 
 }

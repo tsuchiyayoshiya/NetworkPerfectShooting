@@ -18,6 +18,16 @@ class Boss : public GameObject
 	// その他のメンバー変数や関数
 public:
 
+	// ボスの位置を取得するゲッター
+	float GetPositionX() const { return transform_.position_.x; }
+	float GetPositionY() const { return transform_.position_.y; }
+	float GetPositionZ() const { return transform_.position_.z; }
+
+	// ボスのサイズを取得するゲッター
+	float GetScaleX() const { return transform_.scale_.x; }
+	float GetScaleY() const { return transform_.scale_.y; }
+	float GetScaleZ() const { return transform_.scale_.z; }
+
 	//コンストラクタ
 	//引数：parent  親オブジェクト（SceneManager）
 	Boss(GameObject* parent);
