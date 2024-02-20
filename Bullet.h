@@ -23,7 +23,6 @@ public:
 	//ŠJ•ú
 	void Release() override;
 
-	void CheckCollisionWithBoss();
 
-	void SetMove(XMFLOAT3 move) { move_ = move; }
+	
 };

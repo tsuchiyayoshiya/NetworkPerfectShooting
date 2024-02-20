@@ -34,7 +34,5 @@ public:
 	//ŠJ•ú
 	void Release() override;
 
-	float GetRadius() const; // ”¼Œa‚ğæ“¾‚·‚éŠÖ”‚ğ’Ç‰Á
-
-	void OnCollisionEnter(GameObject* other); // “–‚½‚è”»’è‚Ìˆ—‚ğs‚¤ŠÖ”
+	
 };
