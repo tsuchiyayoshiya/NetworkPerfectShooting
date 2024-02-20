@@ -8,6 +8,7 @@
 Bullet::Bullet(GameObject* parent)
     : GameObject(parent, "Bullet"), hPict_(-1)
 {
+    pBoss = (Boss*)FindObject("Boss");
 }
 
 //初期化
@@ -30,13 +31,8 @@ void Bullet::Update()
         // GameObjectポインタを取得
         GameObject* obj = FindObject("Boss");
         // ポインタが有効であり、かつBossクラスのインスタンスであることを確認
-        if (obj && dynamic_cast<Boss*>(obj) != nullptr) {
-            Boss* boss = static_cast<Boss*>(obj);
-            // ボスの位置に来たらボスを消す
-            if (transform_.position_.y >= boss->transform_.position_.y &&
-                transform_.position_.y <= boss->transform_.position_.y + boss->transform_.scale_.y) {
-                boss->KillMe();
-            }
+        if () {
+            
         }
         KillMe();
     }
