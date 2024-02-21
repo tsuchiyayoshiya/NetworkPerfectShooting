@@ -31,14 +31,14 @@ public:
 	//開放
 	void Release() override;
 
-	// 弾の位置を取得するゲッター
-	float GetBulletPositionX() const { return tBullet.position_.x; }
-	float GetBulletPositionY() const { return tBullet.position_.y; }
-	float GetBulletPositionX() const { return tBullet.position_.z; }
+	//// 弾の位置を取得するゲッター
+	//float GetBulletPositionX()  { return tBullet.position_.x; }
+	//float GetBulletPositionY()  { return tBullet.position_.y; }
+	//float GetBulletPositionX()  { return tBullet.position_.z; }
 
-	// 弾のサイズを取得するゲッター
-	float GetBulletScaleX() const { return tBullet.scale_.x; }
-	float GetBulletScaleY() const { return tBullet.scale_.y; }
-	float GetBulletScaleZ() const { return tBullet.scale_.z; }
+	//// 弾のサイズを取得するゲッター
+	//float GetBulletScaleX()  { return tBullet.scale_.x; }
+	//float GetBulletScaleY()  { return tBullet.scale_.y; }
+	//float GetBulletScaleZ()  { return tBullet.scale_.z; }
 	
 };

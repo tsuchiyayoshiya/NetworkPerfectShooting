@@ -6,6 +6,7 @@
 class TestScene : public GameObject
 {
 	int hPict_;    //画像番号
+	int hModel_;
 public:
 	//コンストラクタ
 	//引数：parent  親オブジェクト（SceneManager）

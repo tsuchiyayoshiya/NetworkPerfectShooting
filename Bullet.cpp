@@ -8,7 +8,7 @@
 Bullet::Bullet(GameObject* parent)
     : GameObject(parent, "Bullet"), hPict_(-1)
 {
-    pBoss = (Boss*)FindObject("Boss");
+    //pBoss = (Boss*)FindObject("Boss");
 }
 
 //‰Šú‰»

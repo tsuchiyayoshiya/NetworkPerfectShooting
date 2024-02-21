@@ -1,4 +1,3 @@
-/*
 #pragma once
 #include <iostream>
 #include <vector>
@@ -35,4 +34,3 @@ public:
 	bool Exit();
 	std::string GetText() { return text_; }
 };
-*/

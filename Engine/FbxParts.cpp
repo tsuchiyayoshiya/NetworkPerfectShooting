@@ -527,7 +527,7 @@ void FbxParts::DrawSkinAnime(Transform& transform, FbxTime time)
 
 	// 頂点バッファをロックして、変形させた後の頂点情報で上書きする
 	D3D11_MAPPED_SUBRESOURCE msr = {};
-	Direct3D::pContext_->Map(pVertexBuffer_, 0, D3D11_MAP_WRITE_DISCARD, 0, &msr);
+	HRESULT hr = Direct3D::pContext_->Map(pVertexBuffer_, 0, D3D11_MAP_WRITE_DISCARD, 0, &msr);
 	if (msr.pData)
 	{
 		memcpy_s(msr.pData, msr.RowPitch, pVertexData_, sizeof(VERTEX) * vertexCount_);

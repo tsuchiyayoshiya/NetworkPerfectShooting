@@ -40,11 +40,11 @@ void Boss::Update()
         checkX2 = (int)(transform_.position_.x + 0.3f);
         checkZ2 = (int)(transform_.position_.z - 0.2f);
 
-        if (GetBulletPositionX() == GetPositionX() ||
+        /*if (GetBulletPositionX() == GetPositionX() ||
             GetBulletPositionY() == GetPositionY())
         {
             this ->KillMe();
-        }
+        }*/
     }
     Bform.position_.x += 0.01f;
 

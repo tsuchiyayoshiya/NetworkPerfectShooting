@@ -1,4 +1,3 @@
-/*
 #include "Socket.h"
 
 Socket::Socket()
@@ -66,8 +65,21 @@ bool Socket::Connect(std::string serverIpv4Address, unsigned short port)
 
 bool Socket::Send(SendElement _elem)
 {
-	SendElement sendValue;	
-	TransByteOrder(&sendValue, _elem);// 送信データ ... ネットワークバイトオーダーに変換後の値を格納
+	//SendElement sendValue;	
+	//TransByteOrder(&sendValue, _elem);// 送信データ ... ネットワークバイトオーダーに変換後の値を格納
+	//int ret;		// 成否の判定用
+	//// 送信
+	//ret = send(sock, (char*)&sendValue, sizeof(sendValue), 0);
+	//// 失敗
+	//if (ret != sizeof(sendValue))
+	//{
+	//	return false;
+	//}
+
+	//return WSAGetLastError();
+
+	int sendValue = 50;
+	sendValue = ntohl(sendValue);// 送信データ ... ネットワークバイトオーダーに変換後の値を格納
 	int ret;		// 成否の判定用
 	// 送信
 	ret = send(sock, (char*)&sendValue, sizeof(sendValue), 0);
@@ -112,7 +124,7 @@ void Socket::TransByteOrder(SendElement* _aftElem, SendElement _BfoElem)
 	_aftElem->playerPos.scale_.x = htonl(_BfoElem.playerPos.scale_.x);
 	_aftElem->playerPos.scale_.y = htonl(_BfoElem.playerPos.scale_.y);
 	_aftElem->playerPos.scale_.z = htonl(_BfoElem.playerPos.scale_.z);
-	/*for (int i = 0; i < _aftElem->bulletPos.size(); i++)
+	for (int i = 0; i < _aftElem->bulletPos.size(); i++)
 	{
 		_aftElem->bulletPos.at(i).position_.x = htonl(_BfoElem.bulletPos.at(i).position_.x);
 		_aftElem->bulletPos.at(i).position_.y = htonl(_BfoElem.bulletPos.at(i).position_.y);
@@ -132,4 +144,3 @@ bool Socket::Exit()
 {
 	return WSAGetLastError();
 }
-*/
