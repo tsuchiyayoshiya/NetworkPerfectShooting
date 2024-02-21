@@ -19,17 +19,6 @@ class Boss : public GameObject
 	int hitCounter_; // 弾との衝突回数をカウントする変数
 	// その他のメンバー変数や関数
 public:
-
-	// ボスの位置を取得するゲッター
-	float GetPositionX() const { return Bform.position_.x; }
-	float GetPositionY() const { return Bform.position_.y; }
-	float GetPositionZ() const { return Bform.position_.z; }
-
-	// ボスのサイズを取得するゲッター
-	float GetScaleX() const { return Bform.scale_.x; }
-	float GetScaleY() const { return Bform.scale_.y; }
-	float GetScaleZ() const { return Bform.scale_.z; }
-	
 	//コンストラクタ
 	//引数：parent  親オブジェクト（SceneManager）
 	Boss(GameObject* parent);
