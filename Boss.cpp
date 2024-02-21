@@ -39,7 +39,7 @@ void Boss::Update()
         checkZ1 = (int)(transform_.position_.z + 0.2f);
         checkX2 = (int)(transform_.position_.x + 0.3f);
         checkZ2 = (int)(transform_.position_.z - 0.2f);
-
+        /*
         if (GetBulletPositionX() == GetPositionX() ||
             GetBulletPositionY() == GetPositionY())
         {
@@ -47,29 +47,29 @@ void Boss::Update()
         }
     }
     Bform.position_.x += 0.01f;
-
+    */
     // 1回動くごとに変数を増加
    // movementCountを小数で増加させる
-    movementCount += 1.0f;
+        movementCount += 1.0f;
 
-    // movementCountが60を超えたらturnをtrueにし
-    if (movementCount > 120.0f) {
-        turn = true;
+        // movementCountが60を超えたらturnをtrueにし
+        if (movementCount > 120.0f) {
+            turn = true;
+        }
+        if (movementCount > 240.0f)
+        {
+            movementCount = 0.0f;
+            turn = false;
+        }
+        // turnがtrueの場合、プレイヤーを左に移動
+        if (turn) {
+            transform_.position_.y -= 0.01f;
+        }
+        // turnがfalseの場合、プレイヤーを右に移動
+        else {
+            transform_.position_.y += 0.01f;
+        }
     }
-    if (movementCount > 240.0f)
-    {
-        movementCount = 0.0f;
-        turn = false;
-    }
-    // turnがtrueの場合、プレイヤーを左に移動
-    if (turn) {
-        transform_.position_.y -= 0.01f;
-    }
-    // turnがfalseの場合、プレイヤーを右に移動
-    else {
-        transform_.position_.y += 0.01f;
-    }
-
 
 }
 
@@ -86,7 +86,7 @@ void Boss::Draw()
 void Boss::Release()
 {
 }
-
+/*
 void Boss::OnCollisionEnter(GameObject* other) {
     if(dynamic_cast<Bullet*>(other)) {
         int hitCounter_ = 0;
@@ -97,3 +97,4 @@ void Boss::OnCollisionEnter(GameObject* other) {
         }
     }
 }
+*/

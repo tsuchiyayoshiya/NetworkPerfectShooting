@@ -111,7 +111,7 @@ void Socket::TransByteOrder(SendElement* _aftElem, SendElement _BfoElem)
 	_aftElem->playerPos.scale_.x = htonl(_BfoElem.playerPos.scale_.x);
 	_aftElem->playerPos.scale_.y = htonl(_BfoElem.playerPos.scale_.y);
 	_aftElem->playerPos.scale_.z = htonl(_BfoElem.playerPos.scale_.z);
-	/*for (int i = 0; i < _aftElem->bulletPos.size(); i++)
+	for (int i = 0; i < _aftElem->bulletPos.size(); i++)
 	{
 		_aftElem->bulletPos.at(i).position_.x = htonl(_BfoElem.bulletPos.at(i).position_.x);
 		_aftElem->bulletPos.at(i).position_.y = htonl(_BfoElem.bulletPos.at(i).position_.y);

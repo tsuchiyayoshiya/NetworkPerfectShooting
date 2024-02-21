@@ -9,7 +9,7 @@
 Bullet::Bullet(GameObject* parent)
     : GameObject(parent, "Bullet"), hPict_(-1)
 {
-    pBoss = (Boss*)FindObject("Boss");
+    //pBoss = (Boss*)FindObject("Boss");
 }
 
 //初期化
@@ -34,30 +34,10 @@ void Bullet::Update()
         this->KillMe();
     }
     
-   // 弾とボスの当たり判定を行う
-    CheckCollisionWithBoss();
-}
-
-// 弾とボスの当たり判定を行う関数
-void Bullet::CheckCollisionWithBoss()
-{
-    // ボスオブジェクトを取得する
-    Boss* pBoss = dynamic_cast<Boss*>(FindObject("Boss"));
-    if (!pBoss)
-        return; // ボスオブジェクトが見つからない場合は処理を終了する
-
-    // ボスとプレイヤーの当たり判定を行う
-    float distanceX = std::abs(transform_.position_.x - pBoss->GetPosition().x);
-    float distanceY = std::abs(transform_.position_.y - pBoss->GetPosition().y);
-    float radiusSum = 0.1f + pBoss->GetRadius();
-    
-    if (distanceX < radiusSum && distanceY < radiusSum)
-    {
-        // 当たり判定が発生した場合の処理を行う
-        pBoss->OnCollisionEnter(this);
-    }
    
 }
+
+
 
 //描画
 void Bullet::Draw()
