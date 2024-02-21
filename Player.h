@@ -16,7 +16,6 @@ public:
 	//‰Šú‰»
 	void Initialize() override;
 
-	
 	//XV
 	void Update() override;
 

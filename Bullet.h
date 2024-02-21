@@ -31,14 +31,9 @@ public:
 	//開放
 	void Release() override;
 
-	//// 弾の位置を取得するゲッター
-	//float GetBulletPositionX()  { return tBullet.position_.x; }
-	//float GetBulletPositionY()  { return tBullet.position_.y; }
-	//float GetBulletPositionX()  { return tBullet.position_.z; }
+	void SetMove(XMFLOAT3 move) { move_ = move; }
 
-	//// 弾のサイズを取得するゲッター
-	//float GetBulletScaleX()  { return tBullet.scale_.x; }
-	//float GetBulletScaleY()  { return tBullet.scale_.y; }
-	//float GetBulletScaleZ()  { return tBullet.scale_.z; }
-	
+	//何かに当たった
+	//引数：pTarget 当たった相手
+	void OnCollision(GameObject* pTarget) override;
 };

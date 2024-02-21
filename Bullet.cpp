@@ -3,6 +3,7 @@
 #include "Engine/Input.h"
 #include "Player.h"
 #include "Boss.h"
+#include "Engine/BoxCollider.h"
 
 //コンストラクタ
 Bullet::Bullet(GameObject* parent)
@@ -30,12 +31,33 @@ void Bullet::Update()
     transform_.position_.x += 0.1f;
     if (transform_.position_.x > 1.0f)
     {
-        
+        this->KillMe();
     }
-
+    
+   // 弾とボスの当たり判定を行う
+    CheckCollisionWithBoss();
 }
 
+// 弾とボスの当たり判定を行う関数
+void Bullet::CheckCollisionWithBoss()
+{
+    // ボスオブジェクトを取得する
+    Boss* pBoss = dynamic_cast<Boss*>(FindObject("Boss"));
+    if (!pBoss)
+        return; // ボスオブジェクトが見つからない場合は処理を終了する
 
+    // ボスとプレイヤーの当たり判定を行う
+    float distanceX = std::abs(transform_.position_.x - pBoss->GetPosition().x);
+    float distanceY = std::abs(transform_.position_.y - pBoss->GetPosition().y);
+    float radiusSum = 0.1f + pBoss->GetRadius();
+    
+    if (distanceX < radiusSum && distanceY < radiusSum)
+    {
+        // 当たり判定が発生した場合の処理を行う
+        pBoss->OnCollisionEnter(this);
+    }
+   
+}
 
 //描画
 void Bullet::Draw()
@@ -48,8 +70,7 @@ void Bullet::Draw()
 void Bullet::Release()
 {
 }
-/*
-int GetBulletPosition() {
-    return Bpos;
+
+void Bullet::OnCollision(GameObject* pTarget)
+{
 }
-*/

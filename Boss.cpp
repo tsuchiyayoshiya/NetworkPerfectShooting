@@ -48,7 +48,6 @@ void Boss::Update()
     }
     Bform.position_.x += 0.01f;
 
-
     // 1回動くごとに変数を増加
    // movementCountを小数で増加させる
     movementCount += 1.0f;
@@ -70,6 +69,8 @@ void Boss::Update()
     else {
         transform_.position_.y += 0.01f;
     }
+
+
 }
 
 //描画
@@ -86,4 +87,13 @@ void Boss::Release()
 {
 }
 
-
+void Boss::OnCollisionEnter(GameObject* other) {
+    if(dynamic_cast<Bullet*>(other)) {
+        int hitCounter_ = 0;
+        hitCounter_ += 1; // 弾との衝突回数をインクリメントする
+        if (hitCounter_ >= 3) {
+            //弾が三回ボスに当たった場合、ボスを破壊する
+           this->KillMe();
+        }
+    }
+}

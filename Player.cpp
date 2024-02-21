@@ -75,7 +75,6 @@ void Player::Update()
     Gauge* pGauge = (Gauge*)FindObject("Gauge");
     pGauge->SetHp(nowHp_, maxHp_);
 
-    
 }
 
 
