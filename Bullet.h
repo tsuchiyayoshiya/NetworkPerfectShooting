@@ -23,7 +23,9 @@ public:
 	//ŠJ•ú
 	void Release() override;
 
-	void CheckCollisionWithBoss();
-
 	void SetMove(XMFLOAT3 move) { move_ = move; }
+
+	//‰½‚©‚É“–‚½‚Á‚½
+	//ˆø”FpTarget “–‚½‚Á‚½‘Šè
+	void OnCollision(GameObject* pTarget) override;
 };

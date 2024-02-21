@@ -16,11 +16,6 @@ public:
 	//‰Šú‰»
 	void Initialize() override;
 
-	// “–‚½‚è”»’è‚Ìˆ—‚ğs‚¤ŠÖ”
-	void OnCollisionEnter(GameObject* other); 
-
-	void CheckCollisionWithBoss();
-
 	//XV
 	void Update() override;
 

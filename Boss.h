@@ -34,7 +34,12 @@ public:
 	//開放
 	void Release() override;
 
-	float GetRadius() const; // 半径を取得する関数を追加
+	//float GetRadius() const; // 半径を取得する関数を追加
+
+	// ボスの位置を取得するゲッター
+	float GetPositionX(){ return Bform.position_.x; }
+	float GetPositionY(){ return Bform.position_.y; }
+	float GetPositionZ(){ return Bform.position_.z; }
 
 	void OnCollisionEnter(GameObject* other); // 当たり判定時の処理を行う関数
 };
