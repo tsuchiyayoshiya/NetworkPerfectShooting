@@ -34,6 +34,7 @@ void PlayScene::Initialize()
 void PlayScene::Update()
 {
     SendElement elem;
+    elem.playerPos.position_ = XMFLOAT3(5, 5, 5);
     sock_->Send(elem);
 }
 

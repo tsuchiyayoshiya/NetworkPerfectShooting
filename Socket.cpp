@@ -78,7 +78,7 @@ bool Socket::Send(SendElement _elem)
 
 	//return WSAGetLastError();
 
-	int sendValue = 50;
+	SendElement sendVal = _elem.playerPos.position_;
 	sendValue = ntohl(sendValue);// 送信データ ... ネットワークバイトオーダーに変換後の値を格納
 	int ret;		// 成否の判定用
 	// 送信
