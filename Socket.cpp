@@ -78,13 +78,12 @@ bool Socket::Send(SendElement _elem)
 
 	//return WSAGetLastError();
 
-	SendElement sendVal = _elem.playerPos.position_;
-	sendValue = ntohl(sendValue);// 送信データ ... ネットワークバイトオーダーに変換後の値を格納
+	SendElement sendVal = _elem; // 送信データ ... ネットワークバイトオーダーに変換後の値を格納
 	int ret;		// 成否の判定用
 	// 送信
-	ret = send(sock, (char*)&sendValue, sizeof(sendValue), 0);
+	ret = send(sock, (char*)&sendVal.playerPos.position_.x, sizeof(sendVal.playerPos.position_.x), 0);
 	// 失敗
-	if (ret != sizeof(sendValue))
+	if (ret != sizeof(sendVal.playerPos.position_.x))
 	{
 		return false;
 	}
