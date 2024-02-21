@@ -4,13 +4,13 @@
 #include "Boss.h"
 #include "Gauge.h"
 #include "Engine/Image.h"
-//#include "Socket.h"
+#include "Socket.h"
 
 //SendElement elem_;
 
 //コンストラクタ
 PlayScene::PlayScene(GameObject* parent)
-    : GameObject(parent, "PlayScene")
+    : GameObject(parent, "PlayScene"), sock_(new Socket())
 {
     
 }
@@ -24,13 +24,17 @@ void PlayScene::Initialize()
     Instantiate<Player>(this);
     Instantiate<Gauge>(this);
 
-    
+    sock_->Init();
+    sock_->InitSocket(SOCK_STREAM);
+    sock_->Connect("127.0.0.1", SERVERPORT);
+
 }
 
 //更新
 void PlayScene::Update()
 {
-    
+    SendElement elem;
+    sock_->Send(elem);
 }
 
 //描画
