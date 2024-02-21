@@ -1,6 +1,6 @@
 #pragma once
 #include "Engine/GameObject.h"
-
+#include "Bullet.h"
 
 //テストシーンを管理するクラス
 class Boss : public GameObject
@@ -10,6 +10,8 @@ class Boss : public GameObject
 	bool turn;
 	int movementCount;
 
+	//Bullet* pBullet;
+
 	Transform Bform;
 
 	float radius_; // 半径
@@ -18,6 +20,16 @@ class Boss : public GameObject
 	// その他のメンバー変数や関数
 public:
 
+	// ボスの位置を取得するゲッター
+	float GetPositionX() const { return Bform.position_.x; }
+	float GetPositionY() const { return Bform.position_.y; }
+	float GetPositionZ() const { return Bform.position_.z; }
+
+	// ボスのサイズを取得するゲッター
+	float GetScaleX() const { return Bform.scale_.x; }
+	float GetScaleY() const { return Bform.scale_.y; }
+	float GetScaleZ() const { return Bform.scale_.z; }
+	
 	//コンストラクタ
 	//引数：parent  親オブジェクト（SceneManager）
 	Boss(GameObject* parent);
@@ -34,12 +46,5 @@ public:
 	//開放
 	void Release() override;
 
-	//float GetRadius() const; // 半径を取得する関数を追加
-
-	// ボスの位置を取得するゲッター
-	float GetPositionX(){ return Bform.position_.x; }
-	float GetPositionY(){ return Bform.position_.y; }
-	float GetPositionZ(){ return Bform.position_.z; }
-
-	void OnCollisionEnter(GameObject* other); // 当たり判定時の処理を行う関数
+	
 };

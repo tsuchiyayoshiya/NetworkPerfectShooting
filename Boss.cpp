@@ -3,6 +3,7 @@
 #include "Engine/Image.h"
 #include "Bullet.h"
 
+
 //コンストラクタ
 Boss::Boss(GameObject* parent)
 	: GameObject(parent, "Boss"),hPict_(-1), turn(false), movementCount(1.0),hBarrage_(-1),hitCounter_(0)
@@ -26,6 +27,25 @@ void Boss::Initialize()
 //更新
 void Boss::Update()
 {
+    //壁の判定
+    int checkX1;
+    int checkX2;
+    int checkZ1;
+    int checkZ2;
+
+    //右
+    {
+        checkX1 = (int)(transform_.position_.x + 0.3f);
+        checkZ1 = (int)(transform_.position_.z + 0.2f);
+        checkX2 = (int)(transform_.position_.x + 0.3f);
+        checkZ2 = (int)(transform_.position_.z - 0.2f);
+
+        if (GetBulletPositionX() == GetPositionX() ||
+            GetBulletPositionY() == GetPositionY())
+        {
+            this ->KillMe();
+        }
+    }
     Bform.position_.x += 0.01f;
 
     // 1回動くごとに変数を増加
