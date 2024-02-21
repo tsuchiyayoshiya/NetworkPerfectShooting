@@ -47,7 +47,7 @@ void Boss::Update()
         }*/
     }
     Bform.position_.x += 0.01f;
-    */
+    
     // 1‰ñ“®‚­‚²‚Æ‚É•Ï”‚ğ‘‰Á
    // movementCount‚ğ¬”‚Å‘‰Á‚³‚¹‚é
         movementCount += 1.0f;
@@ -69,7 +69,6 @@ void Boss::Update()
         else {
             transform_.position_.y += 0.01f;
         }
-    }
 
 }
 
