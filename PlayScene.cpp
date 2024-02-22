@@ -6,7 +6,7 @@
 #include "Engine/Image.h"
 #include "Socket.h"
 
-//SendElement elem_;
+SendElement sendElem_;
 
 //コンストラクタ
 PlayScene::PlayScene(GameObject* parent)
@@ -21,7 +21,8 @@ void PlayScene::Initialize()
     Instantiate<BackGround>(this);
     
     Instantiate<Boss>(this);
-    Instantiate<Player>(this);
+    pPlayer_ = Instantiate<Player>(this);
+    pPlayer_ = (Player*)FindObject("Player");
     Instantiate<Gauge>(this);
 
     sock_->Init();
@@ -33,9 +34,8 @@ void PlayScene::Initialize()
 //更新
 void PlayScene::Update()
 {
-    SendElement elem;
-    elem.playerPos.position_ = XMFLOAT3(5, 5, 5);
-    sock_->Send(elem);
+    sendElem_.playerPos = pPlayer_->GetTransform();
+    sock_->Send(sendElem_);
 }
 
 //描画

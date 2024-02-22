@@ -66,10 +66,12 @@ bool Socket::Connect(std::string serverIpv4Address, unsigned short port)
 bool Socket::Send(SendElement _elem)
 {
 	SendElement sendVal;
+	//TransByteOrder(&sendVal, _elem);
 	sendVal = _elem;// 送信データ
 	int ret;		// 成否の判定用
 	// 送信
-	ret = send(sock, (char*)&sendVal, sizeof(sendVal), 0);
+	ret = SendElem(sendVal);
+
 	// 失敗
 	if (ret != sizeof(sendVal))
 	{
@@ -77,6 +79,25 @@ bool Socket::Send(SendElement _elem)
 	}
 
 	return WSAGetLastError();
+}
+
+bool Socket::SendElem(SendElement _elem)
+{
+	float sendVal = _elem.playerPos.position_.x;
+	bool ret;
+	ret = send(sock, (char*)&sendVal, sizeof(sendVal), 0);
+	ret = send(sock, (char*)&_elem.playerPos.position_.y, sizeof(_elem.playerPos.position_.y), 0);
+	ret = send(sock, (char*)&_elem.playerPos.position_.z, sizeof(_elem.playerPos.position_.z), 0);
+
+	int bulletNum = htonl(_elem.bulletPos.size());
+	ret = send(sock, (char*)&bulletNum, sizeof(bulletNum), 0);
+	for (int i = 0; i < bulletNum; i++)
+	{
+		ret = send(sock, (char*)&_elem.bulletPos[i].position_.x, sizeof(_elem.bulletPos[i].position_.x), 0);
+		ret = send(sock, (char*)&_elem.bulletPos[i].position_.y, sizeof(_elem.bulletPos[i].position_.y), 0);
+		ret = send(sock, (char*)&_elem.bulletPos[i].position_.z, sizeof(_elem.bulletPos[i].position_.z), 0);
+	}
+	return ret;
 }
 
 bool Socket::Recv(SendElement* _elem)

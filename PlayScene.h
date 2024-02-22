@@ -7,6 +7,7 @@
 #include "Engine/Text.h"
 
 class Socket;
+class Player;
 
 //テストシーンを管理するクラス
 class PlayScene : public GameObject
@@ -14,6 +15,8 @@ class PlayScene : public GameObject
 	Socket* sock_;
 
 	std::string text_;
+	Player* pPlayer_;
+	
 public:
 	//コンストラクタ
 	//引数：parent  親オブジェクト（SceneManager）

@@ -24,4 +24,6 @@ public:
 
 	//ŠJ•ú
 	void Release() override;
+
+	Transform GetTransform() { return transform_; }
 };
