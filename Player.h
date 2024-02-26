@@ -1,13 +1,19 @@
 #pragma once
 #include "Engine/GameObject.h"
+#include <vector>
 
-
+class Bullet;
 
 //テストシーンを管理するクラス
 class Player : public GameObject
 {
 	int hPict_;    //画像番号
 	int nowHp_, maxHp_;
+
+	std::vector<Transform> bulletPos_;
+	std::vector<Bullet*> pBullets_;
+
+	bool isOperateMe_;
 public:
 	//コンストラクタ
 	//引数：parent  親オブジェクト（SceneManager）
@@ -26,4 +32,6 @@ public:
 	void Release() override;
 
 	Transform GetTransform() { return transform_; }
+
+	void SetIsOperateMe(bool _isOpe) { isOperateMe_ = _isOpe; }
 };

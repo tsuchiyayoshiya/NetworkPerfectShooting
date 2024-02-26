@@ -7,7 +7,7 @@
 
 //コンストラクタ
 Bullet::Bullet(GameObject* parent)
-    : GameObject(parent, "Bullet"), hPict_(-1)
+    : GameObject(parent, "Bullet"), hPict_(-1), isKillMe_(false)
 {
     //pBoss = (Boss*)FindObject("Boss");
 }
@@ -29,7 +29,7 @@ void Bullet::Update()
     tBullet_.position_.x += 0.1f;
     if (tBullet_.position_.x > 1.0f)
     {
-        this->KillMe();
+        isKillMe_ = true;
     }
 }
 

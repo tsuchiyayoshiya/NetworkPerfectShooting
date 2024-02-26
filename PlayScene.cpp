@@ -6,7 +6,7 @@
 #include "Engine/Image.h"
 #include "Socket.h"
 
-SendElement sendElem_;
+NetWorkValue sendElem_, recvElem_;
 
 //コンストラクタ
 PlayScene::PlayScene(GameObject* parent)
@@ -19,24 +19,26 @@ PlayScene::PlayScene(GameObject* parent)
 void PlayScene::Initialize()
 {
     Instantiate<BackGround>(this);
-    
-    Instantiate<Boss>(this);
-    pPlayer_ = Instantiate<Player>(this);
-    pPlayer_ = (Player*)FindObject("Player");
     Instantiate<Gauge>(this);
+    Instantiate<Boss>(this);
+    pPlayer1_ = Instantiate<Player>(this);
+    pPlayer1_ = (Player*)FindObject("Player");
+    pPlayer1_->SetIsOperateMe(true);
+    pPlayer2_ = Instantiate<Player>(this);
+    pPlayer2_ = (Player*)FindObject("Player");
 
-    bool b;
     sock_->Init();
     sock_->InitSocket(SOCK_STREAM);
-    b = sock_->Connect("192.168.43.54", SERVERPORT);
-
+    sock_->Connect("192.168.43.54", SERVERPORT);
 }
 
 //更新
 void PlayScene::Update()
 {
-    sendElem_.playerPos = pPlayer_->GetTransform();
+    sendElem_.playerPos = pPlayer1_->GetTransform();
     sock_->Send(sendElem_);
+    sock_->Recv(&recvElem_);
+    pPlayer2_->SetPosition(recvElem_.playerPos.position_);
 }
 
 //描画
@@ -55,7 +57,13 @@ void PlayScene::SetPlayerPos(Transform _pos)
     sendElem_.playerPos = _pos;
 }
 
-void PlayScene::SetBulletPos(Transform _pos)
+void PlayScene::SetBulletPos(std::vector<Transform> _pos)
 {
-    sendElem_.bulletPos.push_back(_pos);
+    sendElem_.bulletPos = _pos;
+}
+
+void PlayScene::EraseBullet(int _eraseNum)
+{
+    auto itr = sendElem_.bulletPos.begin();
+    sendElem_.bulletPos.erase(itr + _eraseNum);
 }

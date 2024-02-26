@@ -14,7 +14,7 @@ const unsigned short SERVERPORT = 8888;
 
 const unsigned int MESSAGELENGTH = 1024;
 
-struct SendElement
+struct NetWorkValue
 {
 	Transform playerPos;
 	std::vector<Transform> bulletPos;
@@ -29,10 +29,11 @@ public:
 	bool Init();
 	bool InitSocket(int sockType);
 	bool Connect(std::string serverIpv4Address, unsigned short port);
-	bool Send(SendElement _elem);
-	bool SendElem(SendElement _elem);
-	bool Recv(SendElement *_elem);
-	void TransByteOrder(SendElement* _aftElem, SendElement _BfoElem);
+	bool Send(NetWorkValue _elem);
+	bool SendElem(NetWorkValue _elem);
+	bool Recv(NetWorkValue* _elem);
+	bool RecvElem(NetWorkValue* _elem);
+	void TransByteOrder(NetWorkValue* _aftElem, NetWorkValue _BfoElem);
 	bool Exit();
 	std::string GetText() { return text_; }
 };

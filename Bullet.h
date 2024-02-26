@@ -13,6 +13,8 @@ class Bullet : public GameObject //,Socket
 
 	Transform tBullet_;
 
+	bool isKillMe_;
+
 public:
 	//コンストラクタ
 	//引数：parent  親オブジェクト（SceneManager）
@@ -31,11 +33,15 @@ public:
 	void Release() override;
 
 	void SetMove(XMFLOAT3 move) { move_ = move; }
+	void SetPos(XMFLOAT3 _pos) { tBullet_.position_ = _pos; }
 
 	//何かに当たった
 	//引数：pTarget 当たった相手
 	void OnCollision(GameObject* pTarget) override;
 
+	XMFLOAT3 GetPos() { return tBullet_.position_; }
 	float GetBulletPosX();
 	float GetBulletPosY();
+
+	bool GetIsKillMe() { return isKillMe_; }
 };
