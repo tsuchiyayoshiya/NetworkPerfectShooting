@@ -9,12 +9,14 @@
 Bullet::Bullet(GameObject* parent)
     : GameObject(parent, "Bullet"), hPict_(-1)
 {
-    //pBoss = (Boss*)FindObject("Boss");
+   
+    //pBoss_ = (Boss*)FindObject("Boss");
 }
 
 //初期化
 void Bullet::Initialize()
 {
+    
     tBullet_.scale_ = { 0.2,0.2,0.2 };
    // transform_.position_ = { 0,-0.5,0 };
 
@@ -26,10 +28,17 @@ void Bullet::Initialize()
 //更新
 void Bullet::Update()
 {
+    Boss* pBoss_;
     tBullet_.position_.x += 0.1f;
     if (tBullet_.position_.x > 1.0f)
     {
         this->KillMe();
+    }
+
+    // ボスの位置を取得し、衝突判定を行う
+    if (pBoss_->GetBossPosX() == transform_.position_.x || pBoss_->GetBossPosY() == transform_.position_.y)  {
+        pBoss_->KillMe(); // ボスを削除する
+        this->KillMe(); // 自身も削除する
     }
 }
 
@@ -47,16 +56,3 @@ void Bullet::Release()
 {
 }
 
-void Bullet::OnCollision(GameObject* pTarget)
-{
-}
-
-float Bullet::GetBulletPosX()
-{
-    return tBullet_.position_.x;
-}
-
-float Bullet::GetBulletPosY()
-{
-    return tBullet_.position_.y;
-}

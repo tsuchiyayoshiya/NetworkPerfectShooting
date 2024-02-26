@@ -2,14 +2,13 @@
 #include "Engine/GameObject.h"
 #include "Boss.h"
 
-
 //テストシーンを管理するクラス
-class Bullet : public GameObject //,Socket
+class Bullet : public GameObject 
 {
 	int hPict_;    //画像番号
 	XMFLOAT3 move_;
 
-	//Boss* pBoss;
+	//Boss* pBoss_; // ボスへのポインタを保持するメンバ変数
 
 	Transform tBullet_;
 
@@ -31,11 +30,4 @@ public:
 	void Release() override;
 
 	void SetMove(XMFLOAT3 move) { move_ = move; }
-
-	//何かに当たった
-	//引数：pTarget 当たった相手
-	void OnCollision(GameObject* pTarget) override;
-
-	float GetBulletPosX();
-	float GetBulletPosY();
 };

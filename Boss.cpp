@@ -49,11 +49,11 @@ void Boss::Update()
             Bform_.position_.y += 0.01f;
         }       
 
-        if (pBullet->GetBulletPosX() == Bform_.position_.x ||
+      /*  if (pBullet->GetBulletPosX() == Bform_.position_.x ||
             pBullet->GetBulletPosY() == Bform_.position_.y)
         {
             this->KillMe();
-        }
+        }*/
 }
 
 //•`‰æ

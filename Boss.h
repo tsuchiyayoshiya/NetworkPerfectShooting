@@ -20,7 +20,6 @@ class Boss : public GameObject
 
 	int hitCounter_; // 弾との衝突回数をカウントする変数
 
-
 	// その他のメンバー変数や関数
 public:
 	//コンストラクタ
@@ -39,4 +38,6 @@ public:
 	//開放
 	void Release() override;
 
+	float GetBossPosX() { return Bform_.position_.x; }
+	float GetBossPosY() { return Bform_.position_.y; }
 };
