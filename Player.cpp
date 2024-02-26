@@ -2,6 +2,7 @@
 #include "Bullet.h"
 #include "Gauge.h"
 #include "Boss.h"
+#include "PlayScene.h"
 
 #include "Engine/Model.h"
 #include "Engine/Image.h"
@@ -28,6 +29,9 @@ void Player::Initialize()
 // 更新
 void Player::Update()
 {
+    PlayScene* pPS = (PlayScene*)FindObject("PlayScene");
+    pPS->SetPlayerPos(transform_);
+
     // プレイヤーの移動処理
     if (Input::IsKey(DIK_W))
     {
@@ -55,6 +59,9 @@ void Player::Update()
     {
         Bullet* pBullet = Instantiate<Bullet>(GetParent());
         pBullet->SetPosition(transform_.position_);
+        Transform b;
+        b.position_ = pBullet->GetPosition();
+        pPS->SetBulletPos(b);
     }
     if (Input::IsKey(DIK_M))
     {

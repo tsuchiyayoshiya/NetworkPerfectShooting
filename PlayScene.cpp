@@ -25,9 +25,10 @@ void PlayScene::Initialize()
     pPlayer_ = (Player*)FindObject("Player");
     Instantiate<Gauge>(this);
 
+    bool b;
     sock_->Init();
     sock_->InitSocket(SOCK_STREAM);
-    sock_->Connect("127.0.0.1", SERVERPORT);
+    b = sock_->Connect("192.168.43.54", SERVERPORT);
 
 }
 
@@ -47,4 +48,14 @@ void PlayScene::Draw()
 void PlayScene::Release()
 {
   
+}
+
+void PlayScene::SetPlayerPos(Transform _pos)
+{
+    sendElem_.playerPos = _pos;
+}
+
+void PlayScene::SetBulletPos(Transform _pos)
+{
+    sendElem_.bulletPos.push_back(_pos);
 }

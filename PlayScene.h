@@ -35,4 +35,7 @@ public:
 	void Release() override;
 
 	std::string GetText() { return text_; }
+
+	void SetPlayerPos(Transform _pos);
+	void SetBulletPos(Transform _pos);
 };

@@ -89,7 +89,7 @@ bool Socket::SendElem(SendElement _elem)
 	ret = send(sock, (char*)&_elem.playerPos.position_.y, sizeof(_elem.playerPos.position_.y), 0);
 	ret = send(sock, (char*)&_elem.playerPos.position_.z, sizeof(_elem.playerPos.position_.z), 0);
 
-	int bulletNum = htonl(_elem.bulletPos.size());
+	int bulletNum = _elem.bulletPos.size();
 	ret = send(sock, (char*)&bulletNum, sizeof(bulletNum), 0);
 	for (int i = 0; i < bulletNum; i++)
 	{
