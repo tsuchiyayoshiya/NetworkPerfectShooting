@@ -2,6 +2,8 @@
 #include "Engine/GameObject.h"
 #include "Bullet.h"
 
+class Bullet;
+
 //テストシーンを管理するクラス
 class Boss : public GameObject
 {
@@ -10,13 +12,15 @@ class Boss : public GameObject
 	bool turn;
 	int movementCount;
 
-	//Bullet* pBullet;
+	Bullet* pBullet;
 
-	Transform Bform;
+	Transform Bform_;
 
 	float radius_; // 半径
 
 	int hitCounter_; // 弾との衝突回数をカウントする変数
+
+
 	// その他のメンバー変数や関数
 public:
 	//コンストラクタ
@@ -35,5 +39,4 @@ public:
 	//開放
 	void Release() override;
 
-	
 };

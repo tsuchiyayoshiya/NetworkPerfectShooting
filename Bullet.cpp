@@ -15,7 +15,7 @@ Bullet::Bullet(GameObject* parent)
 //初期化
 void Bullet::Initialize()
 {
-    transform_.scale_ = { 0.2,0.2,0.2 };
+    tBullet_.scale_ = { 0.2,0.2,0.2 };
    // transform_.position_ = { 0,-0.5,0 };
 
     //画像データのロード
@@ -26,8 +26,8 @@ void Bullet::Initialize()
 //更新
 void Bullet::Update()
 {
-    transform_.position_.x += 0.1f;
-    if (transform_.position_.x > 1.0f)
+    tBullet_.position_.x += 0.1f;
+    if (tBullet_.position_.x > 1.0f)
     {
         this->KillMe();
     }
@@ -38,7 +38,7 @@ void Bullet::Update()
 //描画
 void Bullet::Draw()
 {
-    Image::SetTransform(hPict_, transform_);
+    Image::SetTransform(hPict_, tBullet_);
     Image::Draw(hPict_);
 }
 
@@ -50,3 +50,13 @@ void Bullet::Release()
 void Bullet::OnCollision(GameObject* pTarget)
 {
 }
+
+//float Bullet::GetBulletPosX()
+//{
+//    return tBullet_.position_.x;
+//}
+//
+//float Bullet::GetBulletPosY()
+//{
+//    return tBullet_.position_.y;
+//}

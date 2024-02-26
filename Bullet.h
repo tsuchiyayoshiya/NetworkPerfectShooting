@@ -13,7 +13,6 @@ class Bullet : public GameObject //,Socket
 
 	Transform tBullet_;
 
-	
 public:
 	//コンストラクタ
 	//引数：parent  親オブジェクト（SceneManager）
@@ -37,8 +36,6 @@ public:
 	//引数：pTarget 当たった相手
 	void OnCollision(GameObject* pTarget) override;
 
-	// ボスの位置を取得するゲッター
-	float GetPositionX()  { return tBullet_.position_.x; }
-	float GetPositionY()  { return tBullet_.position_.y; }
-	
+	//float GetBulletPosX();
+	//float GetBulletPosY();
 };

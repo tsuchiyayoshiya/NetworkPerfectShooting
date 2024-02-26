@@ -1,11 +1,9 @@
 #ifndef _WINSOCKAPI_
 #define _WINSOCKAPI_
 #endif
-
 #pragma once
 #include "Engine/GameObject.h"
 #include "Engine/Text.h"
-
 class Socket;
 class Player;
 

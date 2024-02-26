@@ -25,9 +25,10 @@ void PlayScene::Initialize()
     pPlayer_ = (Player*)FindObject("Player");
     Instantiate<Gauge>(this);
 
-    sock_->Init();
-    sock_->InitSocket(SOCK_STREAM);
-    sock_->Connect("127.0.0.1", SERVERPORT);
+    bool b;
+    b = sock_->Init();
+    b = sock_->InitSocket(SOCK_STREAM);
+    b = sock_->Connect("127.0.0.2", SERVERPORT);
 
 }
 
