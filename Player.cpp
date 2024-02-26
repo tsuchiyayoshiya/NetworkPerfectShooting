@@ -10,7 +10,7 @@
 
 // コンストラクタ
 Player::Player(GameObject* parent)
-    : GameObject(parent, "Player"), hPict_(-1), nowHp_(50), maxHp_(120)
+    : GameObject(parent, "Player"), hPict_(-1), nowHp_(50), maxHp_(120), isOperateMe_(false)
 {
 }
 
@@ -32,37 +32,63 @@ void Player::Update()
     PlayScene* pPS = (PlayScene*)FindObject("PlayScene");
     pPS->SetPlayerPos(transform_);
 
-    // プレイヤーの移動処理
-    if (Input::IsKey(DIK_W))
+    if (!isOperateMe_)
     {
-        if (transform_.position_.y + 0.05f < 1.0f)
-            transform_.position_.y += 0.05f;
-    }
-    if (Input::IsKey(DIK_S))
-    {
-        if (transform_.position_.y - 0.05f > -1.0f)
-            transform_.position_.y -= 0.05f;
-    }
-    if (Input::IsKey(DIK_A))
-    {
-        if (transform_.position_.x - 0.05f > -1.0f)
-            transform_.position_.x -= 0.05f;
-    }
-    if (Input::IsKey(DIK_D))
-    {
-        if (transform_.position_.x + 0.05f < 1.0f)
-            transform_.position_.x += 0.05f;
+        // プレイヤーの移動処理
+        if (Input::IsKey(DIK_W))
+        {
+            if (transform_.position_.y + 0.05f < 1.0f)
+                transform_.position_.y += 0.05f;
+        }
+        if (Input::IsKey(DIK_S))
+        {
+            if (transform_.position_.y - 0.05f > -1.0f)
+                transform_.position_.y -= 0.05f;
+        }
+        if (Input::IsKey(DIK_A))
+        {
+            if (transform_.position_.x - 0.05f > -1.0f)
+                transform_.position_.x -= 0.05f;
+        }
+        if (Input::IsKey(DIK_D))
+        {
+            if (transform_.position_.x + 0.05f < 1.0f)
+                transform_.position_.x += 0.05f;
+        }
+
+
+        // スペースキーが押された場合の弾の生成処理はそのまま残す
+        if (Input::IsKeyDown(DIK_SPACE))
+        {
+            Bullet* pBullet = Instantiate<Bullet>(GetParent());
+            pBullet->SetPos(transform_.position_);
+            pBullets_.push_back(pBullet);
+            Transform b;
+            b.position_ = pBullet->GetPos();
+            bulletPos_.push_back(b);
+            pPS->SetBulletPos(bulletPos_);
+        }
+        auto itr = bulletPos_.begin();
+        while (itr != bulletPos_.end())
+        {
+            int i = (int)(itr - bulletPos_.begin());
+            if (pBullets_[i]->GetIsKillMe())
+            {
+                pPS->EraseBullet(i);
+                bulletPos_.erase(itr);
+                pBullets_[i]->KillMe();
+                auto bulItr = pBullets_.begin();
+                pBullets_.erase(bulItr + i);
+                break;
+            }
+            else
+            {
+                itr += 1;
+            }
+        }
     }
 
-    // スペースキーが押された場合の弾の生成処理はそのまま残す
-    if (Input::IsKeyDown(DIK_SPACE))
-    {
-        Bullet* pBullet = Instantiate<Bullet>(GetParent());
-        pBullet->SetPosition(transform_.position_);
-        Transform b;
-        b.position_ = pBullet->GetPosition();
-        pPS->SetBulletPos(b);
-    }
+
     if (Input::IsKey(DIK_M))
     {
         nowHp_ += 30;

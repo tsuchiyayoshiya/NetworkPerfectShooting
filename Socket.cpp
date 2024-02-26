@@ -2,28 +2,6 @@
 
 Socket::Socket()
 {
-	// 初期化
-	if (!Init())
-	{
-		text_ = "Error: Init()";
-	}
-	text_ = "Success: Init()";
-
-
-	// ノンブロッキングソケットの作成
-	if (!InitSocket(SOCK_STREAM))
-	{
-		text_ = "Error:Socket()";
-	}
-	text_ = "Success: Socket()";
-
-
-	// 接続要求
-	if (!Connect("127.0.0.1", SERVERPORT))
-	{
-		text_ = "Error:Connect()";
-	}
-	text_ = "Success: Connect()";
 }
 
 bool Socket::Init()
@@ -63,9 +41,9 @@ bool Socket::Connect(std::string serverIpv4Address, unsigned short port)
 	return (connect(sock, (struct sockaddr*)&toAddr, sizeof(toAddr)) == 0);
 }
 
-bool Socket::Send(SendElement _elem)
+bool Socket::Send(NetWorkValue _elem)
 {
-	SendElement sendVal;
+	NetWorkValue sendVal;
 	//TransByteOrder(&sendVal, _elem);
 	sendVal = _elem;// 送信データ
 	int ret;		// 成否の判定用
@@ -81,11 +59,10 @@ bool Socket::Send(SendElement _elem)
 	return WSAGetLastError();
 }
 
-bool Socket::SendElem(SendElement _elem)
+bool Socket::SendElem(NetWorkValue _elem)
 {
-	float sendVal = _elem.playerPos.position_.x;
 	bool ret;
-	ret = send(sock, (char*)&sendVal, sizeof(sendVal), 0);
+	ret = send(sock, (char*)&_elem.playerPos.position_.x, sizeof(_elem.playerPos.position_.x), 0);
 	ret = send(sock, (char*)&_elem.playerPos.position_.y, sizeof(_elem.playerPos.position_.y), 0);
 	ret = send(sock, (char*)&_elem.playerPos.position_.z, sizeof(_elem.playerPos.position_.z), 0);
 
@@ -100,26 +77,44 @@ bool Socket::SendElem(SendElement _elem)
 	return ret;
 }
 
-bool Socket::Recv(SendElement* _elem)
+bool Socket::Recv(NetWorkValue* _elem)
 {
-	SendElement recvElem;
+	NetWorkValue recvValue;
 	int ret;
+	ret = RecvElem(_elem);
 
-	// 受信
-	ret = recv(sock, (char*)&recvElem, sizeof(recvElem), 0);
-	// 失敗
-	if (ret != sizeof(recvElem))
-	{
-		return false;
-	}
+	if (ret != sizeof(recvValue))
+		return 0;
 
 	// 成功時は受信データをバイトオーダーに変換
-	TransByteOrder(_elem, recvElem);
+	*_elem = recvValue;
+
 	return WSAGetLastError();
-	
 }
 
-void Socket::TransByteOrder(SendElement* _aftElem, SendElement _BfoElem)
+bool Socket::RecvElem(NetWorkValue* _elem)
+{
+	bool ret;
+	NetWorkValue recvVal;
+	ret = recv(sock, (char*)&recvVal.playerPos.position_.x, sizeof(recvVal.playerPos.position_.x), 0);
+	ret = recv(sock, (char*)&recvVal.playerPos.position_.y, sizeof(recvVal.playerPos.position_.y), 0);
+	ret = recv(sock, (char*)&recvVal.playerPos.position_.z, sizeof(recvVal.playerPos.position_.z), 0);
+
+	int bulletNum;
+	ret = recv(sock, (char*)&bulletNum, sizeof(bulletNum), 0);
+	if (bulletNum > 0)
+		recvVal.bulletPos.resize(bulletNum);
+	for (int i = 0; i < bulletNum; i++)
+	{
+		ret = recv(sock, (char*)&recvVal.bulletPos[i].position_.x, sizeof(recvVal.bulletPos[i].position_.x), 0);
+		ret = recv(sock, (char*)&recvVal.bulletPos[i].position_.y, sizeof(recvVal.bulletPos[i].position_.y), 0);
+		ret = recv(sock, (char*)&recvVal.bulletPos[i].position_.z, sizeof(recvVal.bulletPos[i].position_.z), 0);
+	}
+	if (recvVal.playerPos.position_.x != 0)   *_elem = recvVal;
+	return false;
+}
+
+void Socket::TransByteOrder(NetWorkValue* _aftElem, NetWorkValue _BfoElem)
 {
 	_aftElem->playerPos.position_.x = htonl(_BfoElem.playerPos.position_.x);
 	_aftElem->playerPos.position_.y = htonl(_BfoElem.playerPos.position_.y);

@@ -29,25 +29,25 @@ void Boss::Update()
 {
     // 1回動くごとに変数を増加
    // movementCountを小数で増加させる
-        movementCount += 1.0f;
+    movementCount += 1.0f;
 
-        // movementCountが60を超えたらturnをtrueにし
-        if (movementCount > 120.0f) {
-            turn = true;
-        }
-        if (movementCount > 240.0f)
-        {
-            movementCount = 0.0f;
-            turn = false;
-        }
-        // turnがtrueの場合、プレイヤーを左に移動
-        if (turn) {
-            Bform_.position_.y -= 0.01f;
-        }
-        // turnがfalseの場合、プレイヤーを右に移動
-        else {
-            Bform_.position_.y += 0.01f;
-        }       
+    // movementCountが60を超えたらturnをtrueにし
+    if (movementCount > 120.0f) {
+        turn = true;
+    }
+    if (movementCount > 240.0f)
+    {
+        movementCount = 0.0f;
+        turn = false;
+    }
+    // turnがtrueの場合、プレイヤーを左に移動
+    if (turn) {
+        Bform_.position_.y -= 0.01f;
+    }
+    // turnがfalseの場合、プレイヤーを右に移動
+    else {
+        Bform_.position_.y += 0.01f;
+    }
 
       /*  if (pBullet->GetBulletPosX() == Bform_.position_.x ||
             pBullet->GetBulletPosY() == Bform_.position_.y)
