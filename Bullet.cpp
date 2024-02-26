@@ -26,15 +26,11 @@ void Bullet::Initialize()
 //XV
 void Bullet::Update()
 {
-    
-
     transform_.position_.x += 0.1f;
     if (transform_.position_.x > 1.0f)
     {
         this->KillMe();
     }
-    
-   
 }
 
 

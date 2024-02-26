@@ -11,7 +11,7 @@ class Bullet : public GameObject //,Socket
 
 	//Boss* pBoss;
 
-	Transform tBullet;
+	Transform tBullet_;
 
 	
 public:
@@ -36,4 +36,9 @@ public:
 	//何かに当たった
 	//引数：pTarget 当たった相手
 	void OnCollision(GameObject* pTarget) override;
+
+	// ボスの位置を取得するゲッター
+	float GetPositionX()  { return tBullet_.position_.x; }
+	float GetPositionY()  { return tBullet_.position_.y; }
+	
 };

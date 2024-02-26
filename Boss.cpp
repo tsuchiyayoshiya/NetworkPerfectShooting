@@ -27,26 +27,7 @@ void Boss::Initialize()
 //XV
 void Boss::Update()
 {
-    //•Ç‚Ì”»’è
-    int checkX1;
-    int checkX2;
-    int checkZ1;
-    int checkZ2;
-
-    //‰E
-    {
-        checkX1 = (int)(transform_.position_.x + 0.3f);
-        checkZ1 = (int)(transform_.position_.z + 0.2f);
-        checkX2 = (int)(transform_.position_.x + 0.3f);
-        checkZ2 = (int)(transform_.position_.z - 0.2f);
-
-        /*if (GetBulletPositionX() == GetPositionX() ||
-            GetBulletPositionY() == GetPositionY())
-        {
-            this ->KillMe();
-        }*/
-    }
-    Bform.position_.x += 0.01f;
+   // Bform.position_.x += 0.01f;
     
     // 1‰ñ“®‚­‚²‚Æ‚É•Ï”‚ğ‘‰Á
    // movementCount‚ğ¬”‚Å‘‰Á‚³‚¹‚é
