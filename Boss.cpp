@@ -13,9 +13,9 @@ Boss::Boss(GameObject* parent)
 //初期化
 void Boss::Initialize()
 {
-    transform_.position_.x = 0.5;
-    transform_.position_.y = -0.5;
-    transform_.scale_ = { 0.7,0.7,0.7 };
+    Bform_.position_.x = 0.5;
+    Bform_.position_.y = -0.5;
+    Bform_.scale_ = { 0.7,0.7,0.7 };
 	//画像データのロード
 	hPict_ = Image::Load("Enemy.jpg");
 	assert(hPict_ >= 0);
@@ -27,27 +27,6 @@ void Boss::Initialize()
 //更新
 void Boss::Update()
 {
-    //壁の判定
-    int checkX1;
-    int checkX2;
-    int checkZ1;
-    int checkZ2;
-
-    //右
-    {
-        checkX1 = (int)(transform_.position_.x + 0.3f);
-        checkZ1 = (int)(transform_.position_.z + 0.2f);
-        checkX2 = (int)(transform_.position_.x + 0.3f);
-        checkZ2 = (int)(transform_.position_.z - 0.2f);
-
-        /*if (GetBulletPositionX() == GetPositionX() ||
-            GetBulletPositionY() == GetPositionY())
-        {
-            this ->KillMe();
-        }*/
-    }
-    Bform.position_.x += 0.01f;
-    
     // 1回動くごとに変数を増加
    // movementCountを小数で増加させる
         movementCount += 1.0f;
@@ -63,21 +42,26 @@ void Boss::Update()
         }
         // turnがtrueの場合、プレイヤーを左に移動
         if (turn) {
-            transform_.position_.y -= 0.01f;
+            Bform_.position_.y -= 0.01f;
         }
         // turnがfalseの場合、プレイヤーを右に移動
         else {
-            transform_.position_.y += 0.01f;
-        }
+            Bform_.position_.y += 0.01f;
+        }       
 
+        if (pBullet->GetBulletPosX() == Bform_.position_.x ||
+            pBullet->GetBulletPosY() == Bform_.position_.y)
+        {
+            this->KillMe();
+        }
 }
 
 //描画
 void Boss::Draw()
 {
-	Image::SetTransform(hPict_, transform_);
+	Image::SetTransform(hPict_, Bform_);
 	Image::Draw(hPict_);
-    Image::SetTransform(hBarrage_, transform_);
+    Image::SetTransform(hBarrage_, Bform_);
     Image::Draw(hBarrage_);
 }
 

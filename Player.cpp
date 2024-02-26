@@ -55,7 +55,7 @@ void Player::Update()
     }
 
     // スペースキーが押された場合の弾の生成処理はそのまま残す
-    if (Input::IsKey(DIK_SPACE))
+    if (Input::IsKeyDown(DIK_SPACE))
     {
         Bullet* pBullet = Instantiate<Bullet>(GetParent());
         pBullet->SetPosition(transform_.position_);

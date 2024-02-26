@@ -11,9 +11,8 @@ class Bullet : public GameObject //,Socket
 
 	//Boss* pBoss;
 
-	Transform tBullet;
+	Transform tBullet_;
 
-	
 public:
 	//コンストラクタ
 	//引数：parent  親オブジェクト（SceneManager）
@@ -36,4 +35,7 @@ public:
 	//何かに当たった
 	//引数：pTarget 当たった相手
 	void OnCollision(GameObject* pTarget) override;
+
+	float GetBulletPosX();
+	float GetBulletPosY();
 };
