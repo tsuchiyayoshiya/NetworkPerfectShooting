@@ -36,6 +36,6 @@ public:
 	//ˆø”FpTarget “–‚½‚Á‚½‘Šè
 	void OnCollision(GameObject* pTarget) override;
 
-	//float GetBulletPosX();
-	//float GetBulletPosY();
+	float GetBulletPosX();
+	float GetBulletPosY();
 };

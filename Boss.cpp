@@ -27,8 +27,6 @@ void Boss::Initialize()
 //XV
 void Boss::Update()
 {
-   // Bform.position_.x += 0.01f;
-
     // 1‰ñ“®‚­‚²‚Æ‚É•Ï”‚ð‘‰Á
    // movementCount‚ð¬”‚Å‘‰Á‚³‚¹‚é
         movementCount += 1.0f;
@@ -51,11 +49,11 @@ void Boss::Update()
             Bform_.position_.y += 0.01f;
         }       
 
-        /*if (pBullet->GetBulletPosX() == Bform_.position_.x ||
+        if (pBullet->GetBulletPosX() == Bform_.position_.x ||
             pBullet->GetBulletPosY() == Bform_.position_.y)
         {
             this->KillMe();
-        }*/
+        }
 }
 
 //•`‰æ
@@ -66,7 +64,6 @@ void Boss::Draw()
     Image::SetTransform(hBarrage_, Bform_);
     Image::Draw(hBarrage_);
 }
-
 
 //ŠJ•ú
 void Boss::Release()

@@ -51,12 +51,12 @@ void Bullet::OnCollision(GameObject* pTarget)
 {
 }
 
-//float Bullet::GetBulletPosX()
-//{
-//    return tBullet_.position_.x;
-//}
-//
-//float Bullet::GetBulletPosY()
-//{
-//    return tBullet_.position_.y;
-//}
+float Bullet::GetBulletPosX()
+{
+    return tBullet_.position_.x;
+}
+
+float Bullet::GetBulletPosY()
+{
+    return tBullet_.position_.y;
+}
