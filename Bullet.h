@@ -1,6 +1,7 @@
 #pragma once
 #include "Engine/GameObject.h"
-#include "Boss.h"
+
+class Boss;
 
 //テストシーンを管理するクラス
 class Bullet : public GameObject 
@@ -8,7 +9,7 @@ class Bullet : public GameObject
 	int hPict_;    //画像番号
 	XMFLOAT3 move_;
 
-	//Boss* pBoss_; // ボスへのポインタを保持するメンバ変数
+	Boss* pBoss_; // ボスへのポインタを保持するメンバ変数
 
 	Transform tBullet_;
 
@@ -34,13 +35,7 @@ public:
 	void SetMove(XMFLOAT3 move) { move_ = move; }
 	void SetPos(XMFLOAT3 _pos) { tBullet_.position_ = _pos; }
 
-	//何かに当たった
-	//引数：pTarget 当たった相手
-	void OnCollision(GameObject* pTarget) override;
-
 	XMFLOAT3 GetPos() { return tBullet_.position_; }
-	float GetBulletPosX();
-	float GetBulletPosY();
 
 	bool GetIsKillMe() { return isKillMe_; }
 };

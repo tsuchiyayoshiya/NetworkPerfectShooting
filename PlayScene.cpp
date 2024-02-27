@@ -29,13 +29,13 @@ void PlayScene::Initialize()
 
     sock_->Init();
     sock_->InitSocket(SOCK_STREAM);
-    sock_->Connect("192.168.43.54", SERVERPORT);
+    sock_->Connect("192.168.42.16", SERVERPORT);
 }
 
 //XV
 void PlayScene::Update()
 {
-    sendElem_.playerPos = pPlayer1_->GetTransform();
+    //sendElem_.playerPos = pPlayer1_->GetTransform();
     sock_->Send(sendElem_);
     sock_->Recv(&recvElem_);
     pPlayer2_->SetPosition(recvElem_.playerPos.position_);

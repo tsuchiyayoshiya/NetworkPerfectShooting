@@ -65,15 +65,6 @@ bool Socket::SendElem(NetWorkValue _elem)
 	ret = send(sock, (char*)&_elem.playerPos.position_.x, sizeof(_elem.playerPos.position_.x), 0);
 	ret = send(sock, (char*)&_elem.playerPos.position_.y, sizeof(_elem.playerPos.position_.y), 0);
 	ret = send(sock, (char*)&_elem.playerPos.position_.z, sizeof(_elem.playerPos.position_.z), 0);
-
-	int bulletNum = _elem.bulletPos.size();
-	ret = send(sock, (char*)&bulletNum, sizeof(bulletNum), 0);
-	for (int i = 0; i < bulletNum; i++)
-	{
-		ret = send(sock, (char*)&_elem.bulletPos[i].position_.x, sizeof(_elem.bulletPos[i].position_.x), 0);
-		ret = send(sock, (char*)&_elem.bulletPos[i].position_.y, sizeof(_elem.bulletPos[i].position_.y), 0);
-		ret = send(sock, (char*)&_elem.bulletPos[i].position_.z, sizeof(_elem.bulletPos[i].position_.z), 0);
-	}
 	return ret;
 }
 
@@ -100,16 +91,6 @@ bool Socket::RecvElem(NetWorkValue* _elem)
 	ret = recv(sock, (char*)&recvVal.playerPos.position_.y, sizeof(recvVal.playerPos.position_.y), 0);
 	ret = recv(sock, (char*)&recvVal.playerPos.position_.z, sizeof(recvVal.playerPos.position_.z), 0);
 
-	int bulletNum;
-	ret = recv(sock, (char*)&bulletNum, sizeof(bulletNum), 0);
-	if (bulletNum > 0)
-		recvVal.bulletPos.resize(bulletNum);
-	for (int i = 0; i < bulletNum; i++)
-	{
-		ret = recv(sock, (char*)&recvVal.bulletPos[i].position_.x, sizeof(recvVal.bulletPos[i].position_.x), 0);
-		ret = recv(sock, (char*)&recvVal.bulletPos[i].position_.y, sizeof(recvVal.bulletPos[i].position_.y), 0);
-		ret = recv(sock, (char*)&recvVal.bulletPos[i].position_.z, sizeof(recvVal.bulletPos[i].position_.z), 0);
-	}
 	if (recvVal.playerPos.position_.x != 0)   *_elem = recvVal;
 	return false;
 }

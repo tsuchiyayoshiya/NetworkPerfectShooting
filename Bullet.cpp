@@ -9,8 +9,7 @@
 Bullet::Bullet(GameObject* parent)
     : GameObject(parent, "Bullet"), hPict_(-1), isKillMe_(false)
 {
-   
-    //pBoss_ = (Boss*)FindObject("Boss");
+    pBoss_ = (Boss*)FindObject("Boss");
 }
 
 //‰Šú‰»
@@ -28,7 +27,6 @@ void Bullet::Initialize()
 //XV
 void Bullet::Update()
 {
-    Boss* pBoss_;
     tBullet_.position_.x += 0.1f;
     if (tBullet_.position_.x > 1.0f)
     {
