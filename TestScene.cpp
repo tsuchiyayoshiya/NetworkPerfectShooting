@@ -11,7 +11,7 @@ TestScene::TestScene(GameObject * parent)
 //‰Šú‰»
 void TestScene::Initialize()
 {
-	hModel_ = Model::Load("Enemy.fbx");
+	hModel_ = Model::Load("Player2.fbx");
 	assert(hModel_ >= 0);
 }
 

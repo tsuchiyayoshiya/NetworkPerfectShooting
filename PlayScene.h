@@ -6,6 +6,7 @@
 #include "Engine/Text.h"
 class Socket;
 class Player;
+class Text;
 
 //テストシーンを管理するクラス
 class PlayScene : public GameObject
@@ -13,6 +14,7 @@ class PlayScene : public GameObject
 	Socket* sock_;
 
 	std::string text_;
+	Text* pText_;
 	Player* pPlayer1_;
 	Player* pPlayer2_;
 	

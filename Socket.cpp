@@ -62,9 +62,14 @@ bool Socket::Send(NetWorkValue _elem)
 bool Socket::SendElem(NetWorkValue _elem)
 {
 	bool ret;
-	ret = send(sock, (char*)&_elem.playerPos.position_.x, sizeof(_elem.playerPos.position_.x), 0);
-	ret = send(sock, (char*)&_elem.playerPos.position_.y, sizeof(_elem.playerPos.position_.y), 0);
-	ret = send(sock, (char*)&_elem.playerPos.position_.z, sizeof(_elem.playerPos.position_.z), 0);
+	NetWorkValue sendElem;
+	sendElem.playerPos.position_.x = (_elem.playerPos.position_.x);
+	sendElem.playerPos.position_.y = (_elem.playerPos.position_.y);
+	sendElem.playerPos.position_.z = (_elem.playerPos.position_.z);
+
+	ret = send(sock, (char*)&sendElem.playerPos.position_.x, sizeof(sendElem.playerPos.position_.x), 0);
+	ret = send(sock, (char*)&sendElem.playerPos.position_.y, sizeof(sendElem.playerPos.position_.y), 0);
+	ret = send(sock, (char*)&sendElem.playerPos.position_.z, sizeof(sendElem.playerPos.position_.z), 0);
 	return ret;
 }
 
@@ -73,7 +78,7 @@ bool Socket::Recv(NetWorkValue* _elem)
 	int ret;
 	ret = RecvElem(_elem);
 
-	if (ret != sizeof(_elem))
+	if (ret != sizeof(*_elem))
 		return 0;
 
 	return WSAGetLastError();
@@ -87,9 +92,13 @@ bool Socket::RecvElem(NetWorkValue* _elem)
 	ret = recv(sock, (char*)&recvVal.playerPos.position_.y, sizeof(recvVal.playerPos.position_.y), 0);
 	ret = recv(sock, (char*)&recvVal.playerPos.position_.z, sizeof(recvVal.playerPos.position_.z), 0);
 
-	if (recvVal.playerPos.position_.x != 0 || recvVal.playerPos.position_.y!= 0)
-		*_elem = recvVal;
-	return false;
+	if (recvVal.playerPos.position_.x != 0 || recvVal.playerPos.position_.y != 0)
+	{
+		_elem->playerPos.position_.x = (recvVal.playerPos.position_.x);
+		_elem->playerPos.position_.y = (recvVal.playerPos.position_.y);
+		_elem->playerPos.position_.z = (recvVal.playerPos.position_.z);
+	}
+	return ret;
 }
 
 void Socket::TransByteOrder(NetWorkValue* _aftElem, NetWorkValue _BfoElem)

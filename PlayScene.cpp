@@ -6,19 +6,22 @@
 #include "Engine/Image.h"
 #include "Socket.h"
 
+#include "Engine/Text.h"
+
 NetWorkValue sendElem_, recvElem_;
 
 //コンストラクタ
 PlayScene::PlayScene(GameObject* parent)
     : GameObject(parent, "PlayScene"), sock_(new Socket())
 {
-    
+    pText_ = new Text();
+    pText_->Initialize();
 }
 
 //初期化
 void PlayScene::Initialize()
 {
-    Instantiate<BackGround>(this);
+    //Instantiate<BackGround>(this);
     Instantiate<Gauge>(this);
     Instantiate<Boss>(this);
     pPlayer1_ = Instantiate<Player>(this);
@@ -43,7 +46,10 @@ void PlayScene::Update()
 
 //描画
 void PlayScene::Draw()
-{  
+{
+    /*pText_->Draw(30, 120, (recvElem_.playerPos.position_.x * 100));
+    pText_->Draw(90, 120, (recvElem_.playerPos.position_.y * 100));
+    pText_->Draw(150, 120, (recvElem_.playerPos.position_.z * 100));*/
 }
 
 //開放
