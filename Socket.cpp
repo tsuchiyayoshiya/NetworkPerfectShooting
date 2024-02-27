@@ -70,15 +70,11 @@ bool Socket::SendElem(NetWorkValue _elem)
 
 bool Socket::Recv(NetWorkValue* _elem)
 {
-	NetWorkValue recvValue;
 	int ret;
 	ret = RecvElem(_elem);
 
-	if (ret != sizeof(recvValue))
+	if (ret != sizeof(_elem))
 		return 0;
-
-	// 成功時は受信データをバイトオーダーに変換
-	*_elem = recvValue;
 
 	return WSAGetLastError();
 }
@@ -91,7 +87,8 @@ bool Socket::RecvElem(NetWorkValue* _elem)
 	ret = recv(sock, (char*)&recvVal.playerPos.position_.y, sizeof(recvVal.playerPos.position_.y), 0);
 	ret = recv(sock, (char*)&recvVal.playerPos.position_.z, sizeof(recvVal.playerPos.position_.z), 0);
 
-	if (recvVal.playerPos.position_.x != 0)   *_elem = recvVal;
+	if (recvVal.playerPos.position_.x != 0 || recvVal.playerPos.position_.y!= 0)
+		*_elem = recvVal;
 	return false;
 }
 
