@@ -34,13 +34,7 @@ public:
 	void SetMove(XMFLOAT3 move) { move_ = move; }
 	void SetPos(XMFLOAT3 _pos) { tBullet_.position_ = _pos; }
 
-	//‰½‚©‚É“–‚½‚Á‚½
-	//ˆø”FpTarget “–‚½‚Á‚½‘Šè
-	void OnCollision(GameObject* pTarget) override;
-
 	XMFLOAT3 GetPos() { return tBullet_.position_; }
-	float GetBulletPosX();
-	float GetBulletPosY();
-
+	
 	bool GetIsKillMe() { return isKillMe_; }
 };

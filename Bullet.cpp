@@ -35,11 +35,11 @@ void Bullet::Update()
         isKillMe_ = true;
     }
 
-    // ボスの位置を取得し、衝突判定を行う
-    if (pBoss_->GetBossPosX() == transform_.position_.x || pBoss_->GetBossPosY() == transform_.position_.y)  {
-        pBoss_->KillMe(); // ボスを削除する
-        this->KillMe(); // 自身も削除する
-    }
+    //// ボスの位置を取得し、衝突判定を行う
+    //if (pBoss_->GetBossPosX() == transform_.position_.x || pBoss_->GetBossPosY() == transform_.position_.y)  {
+    //    pBoss_->KillMe(); // ボスを削除する
+    //    this->KillMe(); // 自身も削除する
+    //}
 }
 
 

@@ -29,7 +29,7 @@ void PlayScene::Initialize()
 
     sock_->Init();
     sock_->InitSocket(SOCK_STREAM);
-    sock_->Connect("192.168.43.54", SERVERPORT);
+    sock_->Connect("192.168.42.16", SERVERPORT);
 }
 
 //XV
