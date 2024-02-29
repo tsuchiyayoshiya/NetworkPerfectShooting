@@ -12,7 +12,7 @@
 
 //コンストラクタ
 PlayScene::PlayScene(GameObject* parent)
-    : GameObject(parent, "PlayScene"), sock_(new Socket()), isStart_(false)
+    : GameObject(parent, "PlayScene"), sock_(new Socket()), isCountDown_(true), isStart_(false)
 {
     pText_ = new Text();
     pText_->Initialize();
@@ -37,27 +37,43 @@ void PlayScene::Initialize()
 //更新
 void PlayScene::Update()
 {
-    sock_->Recv(&isStart_);
     if (isStart_)
     {
-        pTimer_->UpData();
         pPlayer1_->SetIsStart(true);
     }
+    if (isCountDown_)
+    {
+        pTimer_->UpData();
+    }
+    else
+    {
+        sock_->Recv(&isCountDown_);
+    }
+    
+   
 }
 
 //描画
 void PlayScene::Draw()
 {
-    std::string resStr = std::to_string((int)pTimer_->GetTime());
-    if (pTimer_->isTimeUpped())
+    if (pTimer_->GetRestTime() >= -1)
     {
-        resStr = "START";
+        std::string resStr = std::to_string((int)pTimer_->GetRestTime() + 1);
+        if (pTimer_->isTimeUpped())
+        {
+            resStr = "START";
+            isStart_ = true;
+        }
+        pText_->Draw(600, 100, resStr.c_str());
     }
-    pText_->Draw(400, 300, resStr.c_str());
+    else
+    {
+        isCountDown_ = false;
+    }
 }
 
 //開放
 void PlayScene::Release()
 {
-  
+    delete pTimer_;
 }

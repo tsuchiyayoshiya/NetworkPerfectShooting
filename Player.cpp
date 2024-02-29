@@ -3,14 +3,17 @@
 #include "Gauge.h"
 #include "Boss.h"
 #include "PlayScene.h"
+#include "Timer.h"
 
 #include "Engine/Model.h"
 #include "Engine/Image.h"
 #include "Engine/Input.h"
+#include "Engine/Text.h"
 
 // コンストラクタ
 Player::Player(GameObject* parent)
-    : GameObject(parent, "Player"), hPict_(-1), nowHp_(50), maxHp_(120), isStart_(false)
+    : GameObject(parent, "Player"), hPict_(-1), nowHp_(50), maxHp_(120), isStart_(false),
+    pTimer_(new Timer()), pText_(new Text())
 {
 }
 
@@ -24,6 +27,8 @@ void Player::Initialize()
     // 画像データのロード
     hPict_ = Image::Load("Player.jpg");
     assert(hPict_ >= 0);
+
+    pText_->Initialize();
 }
 
 // 更新
@@ -31,6 +36,8 @@ void Player::Update()
 {
     if (isStart_)
     {
+        pTimer_->UpData();
+
         // プレイヤーの移動処理
         if (Input::IsKey(DIK_W))
         {
@@ -59,6 +66,7 @@ void Player::Update()
         {
             Bullet* pBullet = Instantiate<Bullet>(GetParent());
             pBullet->SetPos(transform_.position_);
+            pBullet->SetFiredObj(this->GetObjectName());
         }
     }
 
@@ -88,6 +96,12 @@ void Player::Update()
 // 描画
 void Player::Draw()
 {
+    if (isStart_)
+    {
+        std::string str = std::to_string(pTimer_->GetTime());
+        pText_->Draw(60, 120, str.c_str());
+    }
+
     // プレイヤー
     Image::SetTransform(hPict_, transform_);
     Image::Draw(hPict_);
@@ -96,4 +110,9 @@ void Player::Draw()
 // 開放
 void Player::Release()
 {
+}
+
+float Player::GetPlayTime()
+{
+    return pTimer_->GetTime(); 
 }

@@ -7,9 +7,11 @@ class Timer
 	float limitTime_;
 
 public:
+	Timer();
 	Timer(float limTime_);
 	void UpData();
-	float GetTime() { return limitTime_ - currentTime_; }
+	float GetRestTime() { return limitTime_ - currentTime_; }
+	float GetTime() { return currentTime_; }
 	bool isTimeUpped()
 	{
 		if (limitTime_ <= currentTime_)

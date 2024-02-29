@@ -7,15 +7,13 @@
 
 //コンストラクタ
 Bullet::Bullet(GameObject* parent)
-    : GameObject(parent, "Bullet"), hPict_(-1)
+    : GameObject(parent, "Bullet"), hPict_(-1), firedObj_("")
 {
-    pBoss_ = (Boss*)FindObject("Boss");
 }
 
 //初期化
 void Bullet::Initialize()
 {
-    
     tBullet_.scale_ = { 0.2,0.2,0.2 };
    // transform_.position_ = { 0,-0.5,0 };
 
@@ -32,12 +30,6 @@ void Bullet::Update()
     {
         this->KillMe();
     }
-
-    //// ボスの位置を取得し、衝突判定を行う
-    //if (pBoss_->GetBossPosX() == transform_.position_.x || pBoss_->GetBossPosY() == transform_.position_.y)  {
-    //    pBoss_->KillMe(); // ボスを削除する
-    //    this->KillMe(); // 自身も削除する
-    //}
 }
 
 

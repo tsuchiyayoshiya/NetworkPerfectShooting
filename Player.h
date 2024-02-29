@@ -3,6 +3,8 @@
 #include <vector>
 
 class Bullet;
+class Timer;
+class Text;
 
 //テストシーンを管理するクラス
 class Player : public GameObject
@@ -11,6 +13,9 @@ class Player : public GameObject
 	int nowHp_, maxHp_;
 
 	bool isStart_;
+	Timer* pTimer_;
+	Text* pText_;
+
 public:
 	//コンストラクタ
 	//引数：parent  親オブジェクト（SceneManager）
@@ -31,4 +36,6 @@ public:
 	Transform GetTransform() { return transform_; }
 
 	void SetIsStart(bool _isStart) { isStart_ = _isStart; }
+
+	float GetPlayTime();
 };

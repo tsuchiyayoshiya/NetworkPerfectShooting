@@ -3,7 +3,7 @@
 #endif
 #pragma once
 #include "Engine/GameObject.h"
-#include "Engine/Text.h"
+
 class Socket;
 class Player;
 class Text;
@@ -12,7 +12,7 @@ class Timer;
 //テストシーンを管理するクラス
 class PlayScene : public GameObject
 {
-	bool isStart_;
+	bool isCountDown_, isStart_;
 
 	Socket* sock_;
 

@@ -26,8 +26,6 @@ void Boss::Initialize()
 //çXêV
 void Boss::Update()
 {
-   
-    
     Bbullet += 1;
     if (Bbullet % 50 == 0)
     {

@@ -9,7 +9,7 @@ class Bullet : public GameObject
 	int hPict_;    //画像番号
 	XMFLOAT3 move_;
 
-	Boss* pBoss_; // ボスへのポインタを保持するメンバ変数
+	std::string firedObj_;
 
 	Transform tBullet_;
 public:
@@ -33,4 +33,6 @@ public:
 	void SetPos(XMFLOAT3 _pos) { tBullet_.position_ = _pos; }
 
 	XMFLOAT3 GetPos() { return tBullet_.position_; }
+
+	void SetFiredObj(std::string _str) { firedObj_ = _str; }
 };
