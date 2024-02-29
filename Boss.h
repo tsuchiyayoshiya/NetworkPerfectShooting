@@ -4,6 +4,12 @@
 
 class Bullet;
 
+enum BossState {
+	UpDown,
+	Dancing,
+	What
+};
+
 //テストシーンを管理するクラス
 class Boss : public GameObject
 {
@@ -11,6 +17,9 @@ class Boss : public GameObject
 	int hBarrage_; //弾幕
 	bool turn;
 	int movementCount;
+	int dancingCount;
+
+	int Random;
 
 	Bullet* pBullet;
 
@@ -19,6 +28,8 @@ class Boss : public GameObject
 	float radius_; // 半径
 
 	int hitCounter_; // 弾との衝突回数をカウントする変数
+
+	int Bbullet;
 
 	// その他のメンバー変数や関数
 public:
@@ -40,4 +51,7 @@ public:
 
 	float GetBossPosX() { return Bform_.position_.x; }
 	float GetBossPosY() { return Bform_.position_.y; }
+
+	void BossUpDown();
+	void BossDancing();
 };

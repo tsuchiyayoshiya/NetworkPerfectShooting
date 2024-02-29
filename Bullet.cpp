@@ -30,7 +30,7 @@ void Bullet::Update()
     tBullet_.position_.x += 0.1f;
     if (tBullet_.position_.x > 1.0f)
     {
-        isKillMe_ = true;
+        this->KillMe();
     }
 
     //// ボスの位置を取得し、衝突判定を行う

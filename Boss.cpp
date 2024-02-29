@@ -3,10 +3,9 @@
 #include "Engine/Image.h"
 #include "Bullet.h"
 
-
 //コンストラクタ
 Boss::Boss(GameObject* parent)
-	: GameObject(parent, "Boss"),hPict_(-1), turn(false), movementCount(1.0),hBarrage_(-1),hitCounter_(0)
+	: GameObject(parent, "Boss"),hPict_(-1), turn(false), movementCount(1.0),dancingCount(1.0),hBarrage_(-1),hitCounter_(0),Bbullet(0),Random(0)
 {
 }
 
@@ -27,8 +26,45 @@ void Boss::Initialize()
 //更新
 void Boss::Update()
 {
+   
+    
+    Bbullet += 1;
+    if (Bbullet % 50 == 0)
+    {
+        Bullet* pBullet = Instantiate<Bullet>(GetParent());
+        pBullet->SetPos(Bform_.position_);
+    }
+    
+    Random = rand() % 3 + 1;
+    switch (UpDown)
+    {
+        BossUpDown();
+        break;
+
+    default:
+        break;
+    }
+    
+}
+
+//描画
+void Boss::Draw()
+{
+	Image::SetTransform(hPict_, Bform_);
+	Image::Draw(hPict_);
+    Image::SetTransform(hBarrage_, Bform_);
+    Image::Draw(hBarrage_);
+}
+
+//開放
+void Boss::Release()
+{
+}
+
+void Boss::BossUpDown()
+{
     // 1回動くごとに変数を増加
-   // movementCountを小数で増加させる
+  // movementCountを小数で増加させる
     movementCount += 1.0f;
 
     // movementCountが60を超えたらturnをtrueにし
@@ -48,26 +84,29 @@ void Boss::Update()
     else {
         Bform_.position_.y += 0.01f;
     }
-
-      /* if (pBullet->GetBulletPosX() == Bform_.position_.x ||
-            pBullet->GetBulletPosY() == Bform_.position_.y)
-        {
-            this->KillMe();
-        }*/
 }
 
-//描画
-void Boss::Draw()
+void Boss::BossDancing()
 {
-	Image::SetTransform(hPict_, Bform_);
-	Image::Draw(hPict_);
-    Image::SetTransform(hBarrage_, Bform_);
-    Image::Draw(hBarrage_);
+    // 1回動くごとに変数を増加
+  // movementCountを小数で増加させる
+    dancingCount += 1.0f;
+
+    // movementCountが60を超えたらturnをtrueにし
+    if (dancingCount > 120.0f) {
+        turn = true;
+    }
+    if (dancingCount > 240.0f)
+    {
+        dancingCount = 0.0f;
+        turn = false;
+    }
+    // turnがtrueの場合、プレイヤーを左に移動
+    if (turn) {
+        Bform_.position_.y -= 0.01f;
+    }
+    // turnがfalseの場合、プレイヤーを右に移動
+    else {
+        Bform_.position_.y += 0.01f;
+    }
 }
-
-//開放
-void Boss::Release()
-{
-}
-
-
