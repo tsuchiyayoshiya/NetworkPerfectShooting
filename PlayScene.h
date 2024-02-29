@@ -7,6 +7,7 @@
 class Socket;
 class Player;
 class Text;
+class Timer;
 
 //テストシーンを管理するクラス
 class PlayScene : public GameObject
@@ -14,6 +15,8 @@ class PlayScene : public GameObject
 	bool isStart_;
 
 	Socket* sock_;
+
+	Timer* pTimer_;
 
 	std::string text_;
 	Text* pText_;

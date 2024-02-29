@@ -30,5 +30,5 @@ public:
 
 	Transform GetTransform() { return transform_; }
 
-	void SetIsOperateMe(bool _isStart) { isStart_ = _isStart; }
+	void SetIsStart(bool _isStart) { isStart_ = _isStart; }
 };
