@@ -13,8 +13,12 @@ enum BossState {
 //テストシーンを管理するクラス
 class Boss : public GameObject
 {
+	int Hp_;
+
 	int hPict_;    //画像番号
 	int hBarrage_; //弾幕
+	
+
 	bool turn;
 	bool rotate;
 	int movementCount;
@@ -31,6 +35,8 @@ class Boss : public GameObject
 	int hitCounter_; // 弾との衝突回数をカウントする変数
 
 	int Bbullet;
+
+	
 
 	// その他のメンバー変数や関数
 public:
