@@ -62,7 +62,7 @@ public:
 	//ŠJ•ú
 	void Release() override;
 
-	XMFLOAT3 GetPos() { return Bform_.position_; }
+ 	XMFLOAT3 GetPos() { return Bform_.position_; }
 	float GetColRadius() { return colRadius_; }
 
 	void SetIsDamage(bool _isDamage) { isDamage_ = _isDamage; }

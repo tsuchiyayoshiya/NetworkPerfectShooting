@@ -49,58 +49,44 @@ void Boss::Update()
             pBullets_[0]->SetMove(XMFLOAT3(-1, 1, 0));
             pBullets_[1]->SetMove(XMFLOAT3(-1, 0, 0));
             pBullets_[2]->SetMove(XMFLOAT3(-1, -1, 0));
-
-            
-            break;
-        /*case 1:
-            pBullets_.resize(3);
-            for (int i = 0; i < pBullets_.size(); i++)
-            {
-                pBullets_[i] = Instantiate<Bullet>(GetParent());
-                pBullets_[i]->SetPos(Bform_.position_);
-                pBullets_[i]->SetFiredObj(this->GetObjectName());
-            }
-            pBullets_[0]->SetMove(XMFLOAT3(-1, 1, 0));
-            pBullets_[1]->SetMove(XMFLOAT3(-1, 0, 0));
-            pBullets_[2]->SetMove(XMFLOAT3(-1, -1, 0));*/
-
         }
     }
-    
+
     // 1回動くごとに変数を増加
             // movementCountを小数で増加させる
     movementCount += 1.0f;
 
-        // movementCountが60を超えたらturnをtrueにし
-        if (movementCount > 120.0f) {
-            turn = true;
-        }
-        if (movementCount > 240.0f)
-        {
-            movementCount = 0.0f;
-            turn = false;
-        }
-        // turnがtrueの場合、プレイヤーを左に移動
-        if (turn) {
-            Bform_.position_.y -= 0.01f;
-        }
-        // turnがfalseの場合、プレイヤーを右に移動
-        else {
-            Bform_.position_.y += 0.01f;
-        }
+    // movementCountが60を超えたらturnをtrueにし
+    if (movementCount > 120.0f) {
+        turn = true;
+    }
+    if (movementCount > 240.0f)
+    {
+        movementCount = 0.0f;
+        turn = false;
+    }
+    // turnがtrueの場合、プレイヤーを左に移動
+    if (turn) {
+        Bform_.position_.y -= 0.01f;
+    }
+    // turnがfalseの場合、プレイヤーを右に移動
+    else {
+        Bform_.position_.y += 0.01f;
+    }
 
-        if (isDamage_)
+    if (isDamage_)
+    {
+        nowHp_ -= 30;
+        if (nowHp_ <= 0)
         {
-            nowHp_ -= 30;
-            if (nowHp_ <= 0)
-            {
-                isDead_ = true;
-                KillMe();
-            }
-            isDamage_ = false;
+            isDead_ = true;
+            KillMe();
         }
+        isDamage_ = false;
     }
 }
+    
+
 
 //描画
 void Boss::Draw()
