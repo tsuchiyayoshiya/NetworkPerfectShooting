@@ -1,11 +1,17 @@
 #include "Boss.h"
-#include"BackGround.h"
-#include "Engine/Image.h"
+#include "BackGround.h"
 #include "Bullet.h"
+
+#include "Engine/Image.h"
 
 //コンストラクタ
 Boss::Boss(GameObject* parent)
-	: GameObject(parent, "Boss"),hPict_(-1),  movementCount(1.0),dancingCount(1.0),hBarrage_(-1),hitCounter_(0),Bbullet(0),Random(0), turn(false),rotate(true),Hp_(0)
+	: GameObject(parent, "Boss"),hPict_(-1),  
+    movementCount(1.0),dancingCount(1.0),
+    hBarrage_(-1),hitCounter_(0),Bbullet(0),
+    Random(0), turn(false),rotate(true),
+    maxHp_(500), nowHp_(maxHp_),
+    isDamage_(false)
 {
 
 }
@@ -30,7 +36,6 @@ void Boss::Update()
     {
         Bullet* pBullet = Instantiate<Bullet>(GetParent());
         pBullet->SetPos(Bform_.position_);
-       
     }
     
    // if(pBullet->)
@@ -48,7 +53,7 @@ void Boss::Update()
 
     default:
         break;
-    }*/
+    }
     
 }
 
@@ -57,7 +62,6 @@ void Boss::Draw()
 {
 	Image::SetTransform(hPict_, Bform_);
 	Image::Draw(hPict_);
-    
 }
 
 //開放

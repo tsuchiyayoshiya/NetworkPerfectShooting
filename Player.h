@@ -6,11 +6,15 @@ class Bullet;
 class Timer;
 class Text;
 
+const int colRadius_ = 30;
+
 //テストシーンを管理するクラス
 class Player : public GameObject
 {
 	int hPict_;    //画像番号
 	int nowHp_, maxHp_;
+
+	bool isDamage_;
 
 	bool isStart_;
 	Timer* pTimer_;
@@ -38,4 +42,8 @@ public:
 	void SetIsStart(bool _isStart) { isStart_ = _isStart; }
 
 	float GetPlayTime();
+
+	int GetColRadius() { return colRadius_; }
+
+	bool SetIsDamage(bool _isDamage) { isDamage_ = _isDamage; }
 };
