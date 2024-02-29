@@ -7,6 +7,7 @@ class Boss;
 class Bullet : public GameObject 
 {
 	int hPict_;    //âÊëúî‘çÜ
+	int BPict_;
 	XMFLOAT3 move_;
 
 	std::string firedObj_;
@@ -31,6 +32,8 @@ public:
 
 	void SetMove(XMFLOAT3 move) { move_ = move; }
 	void SetPos(XMFLOAT3 _pos) { tBullet_.position_ = _pos; }
+
+
 
 	XMFLOAT3 GetPos() { return tBullet_.position_; }
 

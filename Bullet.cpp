@@ -18,14 +18,17 @@ void Bullet::Initialize()
    // transform_.position_ = { 0,-0.5,0 };
 
     //画像データのロード
-    hPict_ = Image::Load("Bullet.jpg");
+    hPict_ = Image::Load("Bullet.png");
+    assert(hPict_ >= 0);
+    //画像データのロード
+    hPict_ = Image::Load("Bullet.png");
     assert(hPict_ >= 0);
 }
 
 //更新
 void Bullet::Update()
 {
-    tBullet_.position_.x += 0.1f;
+    tBullet_.position_.x += 0.01f;
     if (tBullet_.position_.x > 1.0f)
     {
         this->KillMe();
