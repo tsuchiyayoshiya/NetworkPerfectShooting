@@ -45,5 +45,5 @@ public:
 
 	int GetColRadius() { return colRadius_; }
 
-	bool SetIsDamage(bool _isDamage) { isDamage_ = _isDamage; }
+	//bool SetIsDamage(bool _isDamage) { isDamage_ = _isDamage; }
 };

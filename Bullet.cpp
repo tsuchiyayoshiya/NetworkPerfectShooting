@@ -45,7 +45,7 @@ void Bullet::Update()
     playerPos = XMLoadFloat3(&pPos);
     bossPos = XMLoadFloat3(&bPos);
 
-    if (firedObj_ == "Player" &&
+    /*if (firedObj_ == "Player" &&
         abs(XMVectorGetX(XMVector3Length(bulletPos - playerPos))) <= pPlayer_->GetColRadius())
     {
         pPlayer_->SetIsDamage(true);

@@ -1,5 +1,6 @@
 #pragma once
 #include "Engine/GameObject.h"
+#include <vector>
 
 class Bullet;
 
@@ -14,11 +15,16 @@ enum BossState {
 //テストシーンを管理するクラス
 class Boss : public GameObject
 {
+
 	int nowHp_, maxHp_;
 
 	int hPict_;    //画像番号
 	int hBarrage_; //弾幕
-	
+    
+	float BarrageWidth;
+	float BarrageHeight;
+	bool CheckBullet;
+
 	bool isDamage_;
 
 	bool turn;
@@ -28,7 +34,7 @@ class Boss : public GameObject
 
 	int Random;
 
-	Bullet* pBullet;
+	std::vector<Bullet*> pBullets_;
 
 	Transform Bform_;
 
@@ -59,7 +65,7 @@ public:
 	XMFLOAT3 GetPos() { return Bform_.position_; }
 	int GetColRadius() { return colRadius; }
 
-	bool SetIsDamage(bool _isDamage) { isDamage_ = _isDamage; }
+	//bool SetIsDamage(bool _isDamage) { isDamage_ = _isDamage; }
 
 	void BossUpDown();
 	void BossDancing();
