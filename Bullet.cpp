@@ -7,7 +7,7 @@
 
 //コンストラクタ
 Bullet::Bullet(GameObject* parent)
-    : GameObject(parent, "Bullet"), hPict_(-1), firedObj_("")
+    : GameObject(parent, "Bullet"), hPict_(-1), firedObj_(""), BPict_(-1)
 {
 }
 
@@ -21,7 +21,7 @@ void Bullet::Initialize()
     hPict_ = Image::Load("Bullet.png");
     assert(hPict_ >= 0);
     //画像データのロード
-    hPict_ = Image::Load("Bullet.png");
+    hPict_ = Image::Load("BossBullet.png");
     assert(hPict_ >= 0);
 }
 
