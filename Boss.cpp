@@ -40,7 +40,7 @@ void Boss::Update()
     
    // if(pBullet->)
 
-    /*Random = rand() % 3 + 1;
+    Random = rand() % 3 + 1;
     int i = 1;
     if (i == 1)
     {

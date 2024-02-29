@@ -37,12 +37,12 @@ void Bullet::Update()
     {
         this->KillMe();
     }
-    XMVECTOR bulletPos, ;
+    /*XMVECTOR bulletPos, ;
     v = XMVectorSet(0, 0, 0, 0);
     vv = XMVectorSet(0, 0, 0, 0);
-    XMVector3Length(v - vv);
+    XMVector3Length(v - vv);*/
 
-    if (firedObj_ == "Player" &&
+   /* if (firedObj_ == "Player" &&
         abs(XMVectorGetX(XMVector3Length(
         XMLoadFloat3(&tBullet_.position_) - XMLoadFloat3(&pPlayer_->GetTransform().position_)
         ))) <= pPlayer_->GetColRadius())
@@ -56,7 +56,7 @@ void Bullet::Update()
     {
         pBoss_->SetIsDamage(true);
         this->KillMe();
-    }
+    }*/
 }
 
 //•`‰æ
