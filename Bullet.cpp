@@ -56,7 +56,7 @@ void Bullet::Update()
     {
         pBoss_->SetIsDamage(true);
         this->KillMe();
-    }
+    }*/
 }
 
 //•`‰æ
