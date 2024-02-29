@@ -7,6 +7,7 @@ class Boss;
 class Bullet : public GameObject 
 {
 	int hPict_;    //画像番号
+	int BPict_;
 	XMFLOAT3 move_;
 
 	Boss* pBoss_; // ボスへのポインタを保持するメンバ変数

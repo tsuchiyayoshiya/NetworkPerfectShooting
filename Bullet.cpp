@@ -22,6 +22,9 @@ void Bullet::Initialize()
     //画像データのロード
     hPict_ = Image::Load("Bullet.png");
     assert(hPict_ >= 0);
+    //画像データのロード
+    hPict_ = Image::Load("Bullet.png");
+    assert(hPict_ >= 0);
 }
 
 //更新
