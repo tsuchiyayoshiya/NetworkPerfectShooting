@@ -1,8 +1,9 @@
 #pragma once
 #include "Engine/GameObject.h"
-#include "Bullet.h"
 
 class Bullet;
+
+const int colRadius = 50;
 
 enum BossState {
 	UpDown,
@@ -13,11 +14,12 @@ enum BossState {
 //テストシーンを管理するクラス
 class Boss : public GameObject
 {
-	int Hp_;
+	int nowHp_, maxHp_;
 
 	int hPict_;    //画像番号
 	int hBarrage_; //弾幕
 	
+	bool isDamage_;
 
 	bool turn;
 	bool rotate;
@@ -35,8 +37,6 @@ class Boss : public GameObject
 	int hitCounter_; // 弾との衝突回数をカウントする変数
 
 	int Bbullet;
-
-	
 
 	// その他のメンバー変数や関数
 public:
@@ -56,8 +56,10 @@ public:
 	//開放
 	void Release() override;
 
-	float GetBossPosX() { return Bform_.position_.x; }
-	float GetBossPosY() { return Bform_.position_.y; }
+	XMFLOAT3 GetPos() { return Bform_.position_; }
+	int GetColRadius() { return colRadius; }
+
+	bool SetIsDamage(bool _isDamage) { isDamage_ = _isDamage; }
 
 	void BossUpDown();
 	void BossDancing();

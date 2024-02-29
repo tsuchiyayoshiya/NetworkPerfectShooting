@@ -7,8 +7,10 @@
 
 //コンストラクタ
 Bullet::Bullet(GameObject* parent)
-    : GameObject(parent, "Bullet"), hPict_(-1), firedObj_(""), BPict_(-1)
+    : GameObject(parent, "Bullet"), hPict_(-1), firedObj_(""), BPict_(-1), move_{0, 0, 0}
 {
+    pBoss_ = (Boss*)FindObject("Boss");
+    pPlayer_ = (Player*)FindObject("Player");
 }
 
 //初期化
@@ -21,29 +23,55 @@ void Bullet::Initialize()
     hPict_ = Image::Load("Bullet.png");
     assert(hPict_ >= 0);
     //画像データのロード
-    hPict_ = Image::Load("BossBullet.png");
+    BPict_ = Image::Load("BossBullet.png");
     assert(hPict_ >= 0);
 }
 
 //更新
 void Bullet::Update()
 {
-    tBullet_.position_.x += 0.01f;
+    XMStoreFloat3(&move_, XMVector3Normalize(XMLoadFloat3(&move_)));
+    tBullet_.position_.x += move_.x / 50;
+    tBullet_.position_.y += move_.y / 50;
     if (tBullet_.position_.x > 1.0f)
     {
         this->KillMe();
     }
+    XMVECTOR bulletPos, ;
+    v = XMVectorSet(0, 0, 0, 0);
+    vv = XMVectorSet(0, 0, 0, 0);
+    XMVector3Length(v - vv);
+
+    if (firedObj_ == "Player" &&
+        abs(XMVectorGetX(XMVector3Length(
+        XMLoadFloat3(&tBullet_.position_) - XMLoadFloat3(&pPlayer_->GetTransform().position_)
+        ))) <= pPlayer_->GetColRadius())
+    {
+        pPlayer_->SetIsDamage(true);
+        this->KillMe();
+    }
+    else if (firedObj_ == "Boss" &&
+        abs(XMVectorGetX(XMVector3Length(XMLoadFloat3(&tBullet_.position_) -
+            XMLoadFloat3(&pBoss_->GetPos())))) <= pBoss_->GetColRadius())
+    {
+        pBoss_->SetIsDamage(true);
+        this->KillMe();
+    }
 }
-
-
 
 //描画
 void Bullet::Draw()
 {
-    Image::SetTransform(hPict_, tBullet_);
-    Image::Draw(hPict_);
-    Image::SetTransform(BPict_, tBullet_);
-    Image::Draw(BPict_);
+    if (firedObj_ == "Player")
+    {
+        Image::SetTransform(hPict_, tBullet_);
+        Image::Draw(hPict_);
+    }
+    else if (firedObj_ == "Boss")
+    {
+        Image::SetTransform(BPict_, tBullet_);
+        Image::Draw(BPict_);
+    }
 }
 
 //開放

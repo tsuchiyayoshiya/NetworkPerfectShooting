@@ -12,8 +12,8 @@
 
 // コンストラクタ
 Player::Player(GameObject* parent)
-    : GameObject(parent, "Player"), hPict_(-1), nowHp_(50), maxHp_(120), isStart_(false),
-    pTimer_(new Timer()), pText_(new Text())
+    : GameObject(parent, "Player"), hPict_(-1), maxHp_(120), nowHp_(maxHp_), isStart_(false),
+    pTimer_(new Timer()), pText_(new Text()), isDamage_(false)
 {
 }
 
@@ -67,25 +67,20 @@ void Player::Update()
             Bullet* pBullet = Instantiate<Bullet>(GetParent());
             pBullet->SetPos(transform_.position_);
             pBullet->SetFiredObj(this->GetObjectName());
+            pBullet->SetMove(XMFLOAT3(1, 0, 0));
         }
     }
 
 
-    if (Input::IsKey(DIK_M))
+
+    if (isDamage_)
     {
-        nowHp_ += 30;
+        nowHp_ -= 30;
         if (nowHp_ > maxHp_)
         {
             nowHp_ = maxHp_;
         }
-    }
-    if (Input::IsKey(DIK_N))
-    {
-        nowHp_ -= 30;
-        if (nowHp_ < 0)
-        {
-            nowHp_ = 0;
-        }
+        isDamage_ = false;
     }
     Gauge* pGauge = (Gauge*)FindObject("Gauge");
     pGauge->SetHp(nowHp_, maxHp_);

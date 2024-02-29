@@ -2,6 +2,7 @@
 #include "Engine/GameObject.h"
 
 class Boss;
+class Player;
 
 //テストシーンを管理するクラス
 class Bullet : public GameObject 
@@ -13,6 +14,9 @@ class Bullet : public GameObject
 	std::string firedObj_;
 
 	Transform tBullet_;
+
+	Boss* pBoss_;
+	Player* pPlayer_;
 public:
 	//コンストラクタ
 	//引数：parent  親オブジェクト（SceneManager）
@@ -32,8 +36,6 @@ public:
 
 	void SetMove(XMFLOAT3 move) { move_ = move; }
 	void SetPos(XMFLOAT3 _pos) { tBullet_.position_ = _pos; }
-
-
 
 	XMFLOAT3 GetPos() { return tBullet_.position_; }
 
