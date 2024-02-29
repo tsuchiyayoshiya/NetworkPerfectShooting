@@ -1,6 +1,6 @@
 #include "Timer.h"
 
-const int FPS = 60;
+
 
 Timer::Timer()
 {

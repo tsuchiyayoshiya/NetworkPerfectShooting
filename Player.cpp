@@ -75,8 +75,8 @@ void Player::Update()
         nowHp_ -= 30;
         if (nowHp_ <= 0)
         {
-            nowHp_ = 0;
-            isDead_ = true;
+            nowHp_ = maxHp_;
+            pTimer_->SetTime(pTimer_->GetTime() + 10);
         }
         isDamage_ = false;
     }
