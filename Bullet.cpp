@@ -42,6 +42,8 @@ void Bullet::Draw()
 {
     Image::SetTransform(hPict_, tBullet_);
     Image::Draw(hPict_);
+    Image::SetTransform(BPict_, tBullet_);
+    Image::Draw(BPict_);
 }
 
 //ŠJ•ú
