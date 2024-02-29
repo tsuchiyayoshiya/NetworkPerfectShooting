@@ -26,6 +26,7 @@ void PlayScene::Initialize()
     hPlayer1_ = Image::Load("Player1.png");
     hPlayer2_ = Image::Load("Player2.png");
     hWin_ = Image::Load("Winner.png");
+    hLose_ = Image::Load("lose.png");
 
     Instantiate<Gauge>(this);
     pBoss_ = Instantiate<Boss>(this);
@@ -38,8 +39,6 @@ void PlayScene::Initialize()
     sock_->Init();
     sock_->InitSocket(SOCK_STREAM);
     sock_->Connect("192.168.43.82", SERVERPORT);
-
-    sock_->Recv(&playerNum_);
 }
 
 //XV
@@ -52,39 +51,35 @@ void PlayScene::Update()
     {
         pPlayer1_->SetIsStart(false);
         sock_->Send(pPlayer1_->GetPlayTime());
-        sock_->Recv(&isClear_);
+
+        p1Time_ = pPlayer1_->GetPlayTime();
+        sock_->Recv(&p2Time_);
 
         isStart_ = false;
     }
-    if (isClear_)
-    {
-        if (playerNum_ == 1)
-        {
-            p1Time_ = pPlayer1_->GetPlayTime();
-            sock_->Recv(&p2Time_);
-        }
-        else if (playerNum_ == 2)
-        {
-            p2Time_ = pPlayer1_->GetPlayTime();
-            sock_->Recv(&p1Time_);
-        }
-    }
+        
 }
 
 //•`‰æ
 void PlayScene::Draw()
 {
-    if (isClear_)
+    if (pBoss_->GetIsDead())
     {
-        Transform hp1, hp2;
-        hp1.position_ = XMFLOAT3(-0.5f, 0.2, 0);
-        hp2.position_ = XMFLOAT3(0.5f, 0.2, 0);
         std::string str1 = std::to_string(p1Time_);
         std::string str2 = std::to_string(p2Time_);
-        Image::SetTransform(hPlayer1_, hp1);
-        Image::SetTransform(hPlayer2_, hp2);
         pText_->Draw(400, 300, str1.c_str());
         pText_->Draw(800, 300, str2.c_str());
+        if (p1Time_ != 0 && p2Time_ != 0)
+        {
+            if (p1Time_ < p2Time_)
+            {
+                Image::Draw(hWin_);
+            }
+            else
+            {
+                Image::Draw(hLose_);
+            }
+        }
     }
     else
     {
