@@ -13,7 +13,8 @@ Boss::Boss(GameObject* parent)
     hBarrage_(-1),hitCounter_(0),Bbullet(0),
     Random(0), turn(false),rotate(true),
     maxHp_(500), nowHp_(maxHp_),
-    isDamage_(false), colRadius_(300.0f / 800.0f)
+    isDamage_(false), colRadius_(300.0f / 800.0f),
+    isDead_(false)
 {
 
 }
@@ -31,14 +32,12 @@ void Boss::Initialize()
 //更新
 void Boss::Update()
 {
-    Bbullet += 1;
-    
-    if (Bbullet % FPS == 0)
+    if (isStart_)
     {
-        Random =  0;
-        switch (Random)
+        Bbullet += 1;
+
+        if (Bbullet % FPS == 0)
         {
-        case 0:
             pBullets_.resize(3);
             for (int i = 0; i < pBullets_.size(); i++)
             {
@@ -49,46 +48,41 @@ void Boss::Update()
             pBullets_[0]->SetMove(XMFLOAT3(-1, 1, 0));
             pBullets_[1]->SetMove(XMFLOAT3(-1, 0, 0));
             pBullets_[2]->SetMove(XMFLOAT3(-1, -1, 0));
+        }
 
-            
-            break;
-        /*case 1:
-            pBullets_.resize(3);
-            for (int i = 0; i < pBullets_.size(); i++)
+        // 1回動くごとに変数を増加
+        // movementCountを小数で増加させる
+        movementCount += 1.0f;
+
+        // movementCountが60を超えたらturnをtrueにし
+        if (movementCount > 120.0f) {
+            turn = true;
+        }
+        if (movementCount > 240.0f)
+        {
+            movementCount = 0.0f;
+            turn = false;
+        }
+        // turnがtrueの場合、プレイヤーを左に移動
+        if (turn) {
+            Bform_.position_.y -= 0.01f;
+        }
+        // turnがfalseの場合、プレイヤーを右に移動
+        else {
+            Bform_.position_.y += 0.01f;
+        }
+
+        if (isDamage_)
+        {
+            nowHp_ -= 30;
+            if (nowHp_ <= 0)
             {
-                pBullets_[i] = Instantiate<Bullet>(GetParent());
-                pBullets_[i]->SetPos(Bform_.position_);
-                pBullets_[i]->SetFiredObj(this->GetObjectName());
+                isDead_ = true;
+                KillMe();
             }
-            pBullets_[0]->SetMove(XMFLOAT3(-1, 1, 0));
-            pBullets_[1]->SetMove(XMFLOAT3(-1, 0, 0));
-            pBullets_[2]->SetMove(XMFLOAT3(-1, -1, 0));*/
-
+            isDamage_ = false;
         }
     }
-    
-    // 1回動くごとに変数を増加
-            // movementCountを小数で増加させる
-    movementCount += 1.0f;
-
-    // movementCountが60を超えたらturnをtrueにし
-    if (movementCount > 120.0f) {
-        turn = true;
-    }
-    if (movementCount > 240.0f)
-    {
-        movementCount = 0.0f;
-        turn = false;
-    }
-    // turnがtrueの場合、プレイヤーを左に移動
-    if (turn) {
-        Bform_.position_.y -= 0.01f;
-    }
-    // turnがfalseの場合、プレイヤーを右に移動
-    else {
-        Bform_.position_.y += 0.01f;
-    }
-    
 }
 
 //描画

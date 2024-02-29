@@ -5,7 +5,6 @@ class Timer
 	float countTime_;
 	float currentTime_;
 	float limitTime_;
-
 public:
 	Timer();
 	Timer(float limTime_);

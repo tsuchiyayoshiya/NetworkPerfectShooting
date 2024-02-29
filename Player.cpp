@@ -75,9 +75,10 @@ void Player::Update()
     if (isDamage_)
     {
         nowHp_ -= 30;
-        if (nowHp_ > maxHp_)
+        if (nowHp_ >= 0)
         {
-            nowHp_ = maxHp_;
+            nowHp_ = 0;
+            isDead_ = true;
         }
         isDamage_ = false;
     }

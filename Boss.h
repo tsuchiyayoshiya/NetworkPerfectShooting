@@ -23,6 +23,7 @@ class Boss : public GameObject
 	int hBarrage_; //弾幕
 	
 	bool isDamage_;
+	bool isDead_;
 
 	bool turn;
 	bool rotate;
@@ -40,6 +41,8 @@ class Boss : public GameObject
 	int hitCounter_; // 弾との衝突回数をカウントする変数
 
 	int Bbullet;
+
+	bool isStart_;
 
 	// その他のメンバー変数や関数
 public:
@@ -63,4 +66,7 @@ public:
 	float GetColRadius() { return colRadius_; }
 
 	void SetIsDamage(bool _isDamage) { isDamage_ = _isDamage; }
+	bool GetIsDead() { return isDead_; }
+
+	void SetIsStart(bool _isStart) { isStart_ = _isStart; }
 };

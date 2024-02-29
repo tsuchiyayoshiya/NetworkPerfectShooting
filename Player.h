@@ -13,6 +13,7 @@ class Player : public GameObject
 	int nowHp_, maxHp_;
 
 	bool isDamage_;
+	bool isDead_;
 
 	bool isStart_;
 	Timer* pTimer_;
@@ -45,4 +46,5 @@ public:
 	float GetColRadius() { return colRadius_; }
 
 	void SetIsDamage(bool _isDamage) { isDamage_ = _isDamage; }
+	bool GetIsDead() { return isDead_; }
 };
