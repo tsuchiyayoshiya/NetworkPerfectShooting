@@ -13,6 +13,8 @@ class Boss;
 //テストシーンを管理するクラス
 class PlayScene : public GameObject
 {
+	int hPlayer1_, hPlayer2_, hWin_;
+
 	bool isCountDown_, isStart_;
 
 	float playerNum_;

@@ -13,7 +13,7 @@ Boss::Boss(GameObject* parent)
     movementCount(1.0),dancingCount(1.0),
     hBarrage_(-1),hitCounter_(0),Bbullet(0),
     Random(0), turn(false),rotate(true),
-    maxHp_(500), nowHp_(maxHp_),
+    maxHp_(500), nowHp_(500),
     isDamage_(false), colRadius_(300.0f / 800.0f),
     isDead_(false)
 {
