@@ -3,10 +3,12 @@
 #include "Player.h"
 #include "Boss.h"
 #include "Gauge.h"
-#include "Engine/Image.h"
 #include "Socket.h"
+#include "Timer.h"
 
 #include "Engine/Text.h"
+#include "Engine/Image.h"
+
 
 //コンストラクタ
 PlayScene::PlayScene(GameObject* parent)
@@ -19,12 +21,13 @@ PlayScene::PlayScene(GameObject* parent)
 //初期化
 void PlayScene::Initialize()
 {
-    Instantiate<BackGround>(this);
+    //Instantiate<BackGround>(this);
     Instantiate<Gauge>(this);
     Instantiate<Boss>(this);
     pPlayer1_ = Instantiate<Player>(this);
     pPlayer1_ = (Player*)FindObject("Player");
-    pPlayer1_->SetIsOperateMe(true);
+
+    pTimer_ = new Timer(3);
 
     sock_->Init();
     sock_->InitSocket(SOCK_STREAM);
@@ -35,11 +38,22 @@ void PlayScene::Initialize()
 void PlayScene::Update()
 {
     sock_->Recv(&isStart_);
+    if (isStart_)
+    {
+        pTimer_->UpData();
+        pPlayer1_->SetIsStart(true);
+    }
 }
 
 //描画
 void PlayScene::Draw()
 {
+    std::string resStr = std::to_string((int)pTimer_->GetTime());
+    if (pTimer_->isTimeUpped())
+    {
+        resStr = "START";
+    }
+    pText_->Draw(400, 300, resStr.c_str());
 }
 
 //開放
