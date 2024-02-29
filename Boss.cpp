@@ -30,11 +30,13 @@ void Boss::Update()
     {
         Bullet* pBullet = Instantiate<Bullet>(GetParent());
         pBullet->SetPos(Bform_.position_);
+
+        pBullet->SetMove(XMFLOAT3(0.2f, 0.2f, 0));
     }
     
    // if(pBullet->)
 
-    Random = rand() % 3 + 1;
+    /*Random = rand() % 3 + 1;
     int i = 1;
     if (i == 1)
     {
@@ -47,7 +49,7 @@ void Boss::Update()
 
     default:
         break;
-    }
+    }*/
     
 }
 

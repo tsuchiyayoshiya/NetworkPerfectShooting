@@ -12,7 +12,7 @@
 
 // コンストラクタ
 Player::Player(GameObject* parent)
-    : GameObject(parent, "Player"), hPict_(-1), nowHp_(50), maxHp_(120), isStart_(false),
+    : GameObject(parent, "Player"), hPict_(-1), nowHp_(120), maxHp_(120), isStart_(false),
     pTimer_(new Timer()), pText_(new Text())
 {
 }
@@ -70,6 +70,7 @@ void Player::Update()
         }
     }
 
+    //if()
 
     if (Input::IsKey(DIK_M))
     {
