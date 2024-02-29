@@ -13,7 +13,7 @@ Boss::Boss(GameObject* parent)
     movementCount(1.0),dancingCount(1.0),
     hBarrage_(-1),hitCounter_(0),Bbullet(0),
     Random(0), turn(false),rotate(true),
-    maxHp_(500), nowHp_(maxHp_),
+    maxHp_(500), nowHp_(500),
     isDamage_(false), colRadius_(300.0f / 800.0f),
     isDead_(false)
 {
@@ -49,27 +49,11 @@ void Boss::Update()
             pBullets_[0]->SetMove(XMFLOAT3(-1, 1, 0));
             pBullets_[1]->SetMove(XMFLOAT3(-1, 0, 0));
             pBullets_[2]->SetMove(XMFLOAT3(-1, -1, 0));
-
-            
-            break;
-        /*case 1:
-            pBullets_.resize(3);
-            for (int i = 0; i < pBullets_.size(); i++)
-            {
-                pBullets_[i] = Instantiate<Bullet>(GetParent());
-                pBullets_[i]->SetPos(Bform_.position_);
-                pBullets_[i]->SetFiredObj(this->GetObjectName());
-            }
-            pBullets_[0]->SetMove(XMFLOAT3(-1, 1, 0));
-            pBullets_[1]->SetMove(XMFLOAT3(-1, 0, 0));
-            pBullets_[2]->SetMove(XMFLOAT3(-1, -1, 0));*/
-
         }
-    }
-    
-    // 1‰ñ“®‚­‚²‚Æ‚É•Ï”‚ð‘‰Á
-            // movementCount‚ð¬”‚Å‘‰Á‚³‚¹‚é
-    movementCount += 1.0f;
+
+        // 1‰ñ“®‚­‚²‚Æ‚É•Ï”‚ð‘‰Á
+                // movementCount‚ð¬”‚Å‘‰Á‚³‚¹‚é
+        movementCount += 1.0f;
 
         // movementCount‚ª60‚ð’´‚¦‚½‚çturn‚ðtrue‚É‚µ
         if (movementCount > 120.0f) {
