@@ -8,7 +8,8 @@
 
 #include "Engine/Text.h"
 #include "Engine/Image.h"
-
+#include "Engine/Input.h"
+#include "Engine/SceneManager.h"
 
 //コンストラクタ
 PlayScene::PlayScene(GameObject* parent)
@@ -78,6 +79,11 @@ void PlayScene::Draw()
             else
             {
                 Image::Draw(hLose_);
+            }
+            if (Input::IsKeyDown(DIK_SPACE))
+            {
+                SceneManager* pSM = (SceneManager*)FindObject("SceneManager");
+                pSM->ChangeScene(SCENE_ID_PLAY);
             }
         }
     }

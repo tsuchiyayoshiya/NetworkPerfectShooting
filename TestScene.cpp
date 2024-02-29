@@ -1,9 +1,12 @@
 #include "TestScene.h"
-#include"BackGround.h"
-#include "Engine/Model.h"
+#include "BackGround.h"
+
+#include "Engine/Image.h"
+#include "Engine/Input.h"
+#include "Engine/SceneManager.h"
 //コンストラクタ
 TestScene::TestScene(GameObject * parent)
-	: GameObject(parent, "TestScene"), hModel_(-1)
+	: GameObject(parent, "TestScene"), hPict_(-1)
 {
 	
 }
@@ -11,19 +14,24 @@ TestScene::TestScene(GameObject * parent)
 //初期化
 void TestScene::Initialize()
 {
-	hModel_ = Model::Load("Player2.fbx");
-	assert(hModel_ >= 0);
+	hPict_ = Image::Load("Title.png");
+	assert(hPict_ >= 0);
 }
 
 //更新
 void TestScene::Update()
 {
+	if (Input::IsKeyDown(DIK_SPACE))
+	{
+		SceneManager* pSM = (SceneManager*)FindObject("SceneManager");
+		pSM->ChangeScene(SCENE_ID_PLAY);
+	}
 }
 
 //描画
 void TestScene::Draw()
 {
-	Model::Draw(hModel_);
+	Image::Draw(hPict_);
 }
 
 //開放
