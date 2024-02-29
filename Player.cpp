@@ -10,7 +10,7 @@
 
 // コンストラクタ
 Player::Player(GameObject* parent)
-    : GameObject(parent, "Player"), hPict_(-1), nowHp_(50), maxHp_(120), isOperateMe_(false)
+    : GameObject(parent, "Player"), hPict_(-1), nowHp_(50), maxHp_(120), isStart_(false)
 {
 }
 
@@ -29,10 +29,7 @@ void Player::Initialize()
 // 更新
 void Player::Update()
 {
-    PlayScene* pPS = (PlayScene*)FindObject("PlayScene");
-    pPS->SetPlayerPos(transform_);
-
-    if (!isOperateMe_)
+    if (isStart_)
     {
         // プレイヤーの移動処理
         if (Input::IsKey(DIK_W))
@@ -62,29 +59,6 @@ void Player::Update()
         {
             Bullet* pBullet = Instantiate<Bullet>(GetParent());
             pBullet->SetPos(transform_.position_);
-            pBullets_.push_back(pBullet);
-            Transform b;
-            b.position_ = pBullet->GetPos();
-            bulletPos_.push_back(b);
-            pPS->SetBulletPos(bulletPos_);
-        }
-        auto itr = bulletPos_.begin();
-        while (itr != bulletPos_.end())
-        {
-            int i = (int)(itr - bulletPos_.begin());
-            if (pBullets_[i]->GetIsKillMe())
-            {
-                pPS->EraseBullet(i);
-                bulletPos_.erase(itr);
-                pBullets_[i]->KillMe();
-                auto bulItr = pBullets_.begin();
-                pBullets_.erase(bulItr + i);
-                break;
-            }
-            else
-            {
-                itr += 1;
-            }
         }
     }
 

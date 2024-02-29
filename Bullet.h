@@ -12,9 +12,6 @@ class Bullet : public GameObject
 	Boss* pBoss_; // ボスへのポインタを保持するメンバ変数
 
 	Transform tBullet_;
-
-	bool isKillMe_;
-
 public:
 	//コンストラクタ
 	//引数：parent  親オブジェクト（SceneManager）
@@ -36,6 +33,4 @@ public:
 	void SetPos(XMFLOAT3 _pos) { tBullet_.position_ = _pos; }
 
 	XMFLOAT3 GetPos() { return tBullet_.position_; }
-
-	bool GetIsKillMe() { return isKillMe_; }
 };

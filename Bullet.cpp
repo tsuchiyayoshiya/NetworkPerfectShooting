@@ -7,7 +7,7 @@
 
 //コンストラクタ
 Bullet::Bullet(GameObject* parent)
-    : GameObject(parent, "Bullet"), hPict_(-1), isKillMe_(false)
+    : GameObject(parent, "Bullet"), hPict_(-1)
 {
     pBoss_ = (Boss*)FindObject("Boss");
 }

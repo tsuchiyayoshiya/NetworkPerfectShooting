@@ -10,10 +10,7 @@ class Player : public GameObject
 	int hPict_;    //画像番号
 	int nowHp_, maxHp_;
 
-	std::vector<Transform> bulletPos_;
-	std::vector<Bullet*> pBullets_;
-
-	bool isOperateMe_;
+	bool isStart_;
 public:
 	//コンストラクタ
 	//引数：parent  親オブジェクト（SceneManager）
@@ -33,5 +30,5 @@ public:
 
 	Transform GetTransform() { return transform_; }
 
-	void SetIsOperateMe(bool _isOpe) { isOperateMe_ = _isOpe; }
+	void SetIsOperateMe(bool _isStart) { isStart_ = _isStart; }
 };
