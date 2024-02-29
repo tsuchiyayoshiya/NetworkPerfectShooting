@@ -15,6 +15,8 @@ class PlayScene : public GameObject
 {
 	bool isCountDown_, isStart_;
 
+	float playerNum_;
+
 	Socket* sock_;
 
 	Timer* pTimer_;
@@ -22,7 +24,6 @@ class PlayScene : public GameObject
 	std::string text_;
 	Text* pText_;
 	Player* pPlayer1_;
-	Player* pPlayer2_;
 	Boss* pBoss_;
 	
 public:

@@ -12,7 +12,8 @@
 
 //コンストラクタ
 PlayScene::PlayScene(GameObject* parent)
-    : GameObject(parent, "PlayScene"), sock_(new Socket()), isCountDown_(true), isStart_(false)
+    : GameObject(parent, "PlayScene"), sock_(new Socket()), 
+    isCountDown_(true), isStart_(false), playerNum_(0.0f)
 {
     pText_ = new Text();
     pText_->Initialize();
@@ -41,6 +42,7 @@ void PlayScene::Update()
     if (isStart_)
     {
         pPlayer1_->SetIsStart(true);
+        pBoss_->SetIsStart(true);
     }
     if (isCountDown_)
     {
@@ -49,8 +51,13 @@ void PlayScene::Update()
     else
     {
         sock_->Recv(&isCountDown_);
+        sock_->Recv(&playerNum_);
     }
-    
+    if (pBoss_->GetIsDead())
+    {
+        sock_->Send(pPlayer1_->GetPlayTime());
+        isStart_ = false;
+    }
    
 }
 
