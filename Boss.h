@@ -16,6 +16,7 @@ class Boss : public GameObject
 	int hPict_;    //‰æ‘œ”Ô†
 	int hBarrage_; //’e–‹
 	bool turn;
+	bool rotate;
 	int movementCount;
 	int dancingCount;
 
@@ -54,4 +55,5 @@ public:
 
 	void BossUpDown();
 	void BossDancing();
+	void BossWhat();
 };
