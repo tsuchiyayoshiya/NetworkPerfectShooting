@@ -1,6 +1,7 @@
 #include "Boss.h"
 #include "BackGround.h"
 #include "Bullet.h"
+#include "Gauge.h"
 
 #include "Engine/Image.h"
 
@@ -49,8 +50,6 @@ void Boss::Update()
             pBullets_[0]->SetMove(XMFLOAT3(-1, 1, 0));
             pBullets_[1]->SetMove(XMFLOAT3(-1, 0, 0));
             pBullets_[2]->SetMove(XMFLOAT3(-1, -1, 0));
-
-            
             break;
         /*case 1:
             pBullets_.resize(3);
@@ -66,7 +65,7 @@ void Boss::Update()
 
         }
     }
-    
+    {
     // 1‰ñ“®‚­‚²‚Æ‚É•Ï”‚ð‘‰Á
             // movementCount‚ð¬”‚Å‘‰Á‚³‚¹‚é
     movementCount += 1.0f;
@@ -88,7 +87,23 @@ void Boss::Update()
     else {
         Bform_.position_.y += 0.01f;
     }
-    
+    }
+    if (isDamage_)
+    {
+        nowHp_ -= 30;
+        if (nowHp_ > maxHp_)
+        {
+            nowHp_ = maxHp_;
+        }
+        isDamage_ = false;
+    }
+    Gauge* pGauge = (Gauge*)FindObject("Gauge");
+    pGauge->SetHp(nowHp_, maxHp_);
+
+    if (maxHp_ == 0)
+    {
+        this->KillMe();
+    }
 }
 
 //•`‰æ

@@ -48,6 +48,8 @@ void Gauge::Draw()
 	Image::Draw(hPictGauge_);
 	Image::SetTransform(hPictFrame_, transform_);
 	Image::Draw(hPictFrame_);
+
+
 }
 
 //ŠJ•ú

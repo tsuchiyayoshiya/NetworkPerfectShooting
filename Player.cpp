@@ -60,7 +60,6 @@ void Player::Update()
                 transform_.position_.x += 0.05f;
         }
 
-
         // スペースキーが押された場合の弾の生成処理はそのまま残す
         if (Input::IsKeyDown(DIK_SPACE))
         {
@@ -70,7 +69,6 @@ void Player::Update()
             pBullet->SetMove(XMFLOAT3(1, 0, 0));
         }
     }
-
 
     if (isDamage_)
     {
