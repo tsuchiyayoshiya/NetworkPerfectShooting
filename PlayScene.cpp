@@ -23,7 +23,8 @@ void PlayScene::Initialize()
 {
     //Instantiate<BackGround>(this);
     Instantiate<Gauge>(this);
-    Instantiate<Boss>(this);
+    pBoss_ = Instantiate<Boss>(this);
+    pBoss_ = (Boss*)FindObject("Boss");
     pPlayer1_ = Instantiate<Player>(this);
     pPlayer1_ = (Player*)FindObject("Player");
 

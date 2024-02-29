@@ -3,7 +3,7 @@
 
 class Bullet;
 
-const int colRadius = 50;
+
 
 enum BossState {
 	UpDown,
@@ -14,6 +14,8 @@ enum BossState {
 //テストシーンを管理するクラス
 class Boss : public GameObject
 {
+	const float colRadius_;
+
 	int nowHp_, maxHp_;
 
 	int hPict_;    //画像番号
@@ -57,11 +59,7 @@ public:
 	void Release() override;
 
 	XMFLOAT3 GetPos() { return Bform_.position_; }
-	int GetColRadius() { return colRadius; }
+	float GetColRadius() { return colRadius_; }
 
-	bool SetIsDamage(bool _isDamage) { isDamage_ = _isDamage; }
-
-	void BossUpDown();
-	void BossDancing();
-	void BossWhat();
+	void SetIsDamage(bool _isDamage) { isDamage_ = _isDamage; }
 };
