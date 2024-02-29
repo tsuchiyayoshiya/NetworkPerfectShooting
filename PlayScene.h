@@ -11,6 +11,8 @@ class Text;
 //テストシーンを管理するクラス
 class PlayScene : public GameObject
 {
+	bool isStart_;
+
 	Socket* sock_;
 
 	std::string text_;
@@ -36,9 +38,4 @@ public:
 	void Release() override;
 
 	std::string GetText() { return text_; }
-
-	void SetPlayerPos(Transform _pos);
-	void SetBulletPos(std::vector<Transform> _pos);
-
-	void EraseBullet(int _eraseNum);
 };
