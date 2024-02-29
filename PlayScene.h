@@ -8,6 +8,7 @@ class Socket;
 class Player;
 class Text;
 class Timer;
+class Boss;
 
 //テストシーンを管理するクラス
 class PlayScene : public GameObject
@@ -22,6 +23,7 @@ class PlayScene : public GameObject
 	Text* pText_;
 	Player* pPlayer1_;
 	Player* pPlayer2_;
+	Boss* pBoss_;
 	
 public:
 	//コンストラクタ

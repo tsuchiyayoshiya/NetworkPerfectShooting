@@ -6,8 +6,6 @@ class Bullet;
 class Timer;
 class Text;
 
-const int colRadius_ = 30;
-
 //テストシーンを管理するクラス
 class Player : public GameObject
 {
@@ -20,6 +18,7 @@ class Player : public GameObject
 	Timer* pTimer_;
 	Text* pText_;
 
+	const float colRadius_;
 public:
 	//コンストラクタ
 	//引数：parent  親オブジェクト（SceneManager）
@@ -43,7 +42,7 @@ public:
 
 	float GetPlayTime();
 
-	int GetColRadius() { return colRadius_; }
+	float GetColRadius() { return colRadius_; }
 
-	//bool SetIsDamage(bool _isDamage) { isDamage_ = _isDamage; }
+	void SetIsDamage(bool _isDamage) { isDamage_ = _isDamage; }
 };

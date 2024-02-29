@@ -13,8 +13,7 @@ Boss::Boss(GameObject* parent)
     hBarrage_(-1),hitCounter_(0),Bbullet(0),
     Random(0), turn(false),rotate(true),
     maxHp_(500), nowHp_(maxHp_),
-    isDamage_(false),BarrageWidth(5), BarrageHeight(0.5),
-    CheckBullet(false)
+    isDamage_(false), colRadius_(300.0f / 800.0f)
 {
 
 }
@@ -22,9 +21,7 @@ Boss::Boss(GameObject* parent)
 //初期化
 void Boss::Initialize()
 {
-    Bform_.position_.x = 0.5;
-    Bform_.position_.y = -0.5;
-    Bform_.scale_ = { 0.3,0.3,0.3 };
+    Bform_.position_.x = 0.7;
 	//画像データのロード
 	hPict_ = Image::Load("Enemy.jpg");
 	assert(hPict_ >= 0);
@@ -104,80 +101,4 @@ void Boss::Draw()
 //開放
 void Boss::Release()
 {
-}
-
-void Boss::BossUpDown()
-{
-    // 1回動くごとに変数を増加
-  // movementCountを小数で増加させる
-    movementCount += 1.0f;
-
-    // movementCountが60を超えたらturnをtrueにし
-    if (movementCount > 120.0f) {
-        turn = true;
-    }
-    if (movementCount > 240.0f)
-    {
-        movementCount = 0.0f;
-        turn = false;
-    }
-    // turnがtrueの場合、プレイヤーを左に移動
-    if (turn) {
-        Bform_.position_.y -= 0.01f;
-    }
-    // turnがfalseの場合、プレイヤーを右に移動
-    else {
-        Bform_.position_.y += 0.01f;
-    }
-}
-
-
-void Boss::BossDancing()
-{
-    // 1回動くごとに変数を増加
-   // movementCountを小数で増加させる
-    movementCount += 1.0f;
-
-    // movementCountが60を超えたらturnをtrueにし
-    if (movementCount > 120.0f) {
-        turn = true;
-    }
-    if (movementCount > 240.0f)
-    {
-        movementCount = 0.0f;
-        turn = false;
-    }
-
-    // 1回動くごとに変数を増加
-   // movementCountを小数で増加させる
-    dancingCount += 1.0f;
-
-    if (dancingCount > 20.0f) {
-        rotate = true;
-    }
-    if (dancingCount > 40.0f){
-        dancingCount = 0.0f;
-        rotate = false;
-    }
-
-    if (rotate){
-        Bform_.position_.x -= 0.01f;        
-    }
-    else {
-        Bform_.position_.x += 0.01f;
-    }
-
-    // turnがtrueの場合、プレイヤーを左に移動
-    if (turn) {
-        Bform_.position_.y -= 0.01f;
-    }
-    // turnがfalseの場合、プレイヤーを右に移動
-    else {
-        Bform_.position_.y += 0.01f;
-    }
-}
-
-void Boss::BossWhat()
-{
-
 }

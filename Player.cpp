@@ -13,7 +13,7 @@
 // コンストラクタ
 Player::Player(GameObject* parent)
     : GameObject(parent, "Player"), hPict_(-1), nowHp_(120), maxHp_(120), isStart_(false),
-    pTimer_(new Timer()), pText_(new Text())
+    pTimer_(new Timer()), pText_(new Text()), colRadius_(80.0f / 800.0f)
 {
 }
 
