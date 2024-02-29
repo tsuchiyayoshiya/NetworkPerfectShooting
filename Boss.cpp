@@ -36,6 +36,8 @@ void Boss::Update()
     {
         Bullet* pBullet = Instantiate<Bullet>(GetParent());
         pBullet->SetPos(Bform_.position_);
+        pBullet->SetFiredObj(this->GetObjectName());
+        pBullet->SetMove(XMFLOAT3(1, 1, 0));
     }
     
    // if(pBullet->)

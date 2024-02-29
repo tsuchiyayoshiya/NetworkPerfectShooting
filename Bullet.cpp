@@ -37,22 +37,22 @@ void Bullet::Update()
     {
         this->KillMe();
     }
-    XMVECTOR bulletPos, ;
-    v = XMVectorSet(0, 0, 0, 0);
-    vv = XMVectorSet(0, 0, 0, 0);
-    XMVector3Length(v - vv);
+    XMFLOAT3 pPos, bPos;
+    XMVECTOR bulletPos, playerPos, bossPos;
+    pPos = pPlayer_->GetTransform().position_;
+    bPos = pBoss_->GetPos();
+    bulletPos = XMLoadFloat3(&tBullet_.position_);
+    playerPos = XMLoadFloat3(&pPos);
+    bossPos = XMLoadFloat3(&bPos);
 
     if (firedObj_ == "Player" &&
-        abs(XMVectorGetX(XMVector3Length(
-        XMLoadFloat3(&tBullet_.position_) - XMLoadFloat3(&pPlayer_->GetTransform().position_)
-        ))) <= pPlayer_->GetColRadius())
+        abs(XMVectorGetX(XMVector3Length(bulletPos - playerPos))) <= pPlayer_->GetColRadius())
     {
         pPlayer_->SetIsDamage(true);
         this->KillMe();
     }
     else if (firedObj_ == "Boss" &&
-        abs(XMVectorGetX(XMVector3Length(XMLoadFloat3(&tBullet_.position_) -
-            XMLoadFloat3(&pBoss_->GetPos())))) <= pBoss_->GetColRadius())
+        abs(XMVectorGetX(XMVector3Length(bulletPos - bossPos))) <= pBoss_->GetColRadius())
     {
         pBoss_->SetIsDamage(true);
         this->KillMe();

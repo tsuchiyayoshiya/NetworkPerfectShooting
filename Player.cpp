@@ -71,8 +71,6 @@ void Player::Update()
         }
     }
 
-    //if()
-
 
     if (isDamage_)
     {
