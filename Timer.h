@@ -5,6 +5,7 @@ class Timer
 	float countTime_;
 	float currentTime_;
 	float limitTime_;
+	bool timeStop_;
 public:
 	Timer();
 	Timer(float limTime_);
@@ -19,5 +20,6 @@ public:
 		}
 		return false;
 	}
+	void TimeStop() { timeStop_ = true; }
 };
 

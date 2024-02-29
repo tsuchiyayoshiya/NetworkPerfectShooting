@@ -14,7 +14,7 @@
 PlayScene::PlayScene(GameObject* parent)
     : GameObject(parent, "PlayScene"), sock_(new Socket()), 
     isCountDown_(false), isStart_(false), playerNum_(0.0f),
-    hPlayer1_(-1), hPlayer2_(-1), hWin_(-1)
+    hPlayer1_(-1), hPlayer2_(-1), hWin_(-1), p1Time_(0), p2Time_(0)
 {
     pText_ = new Text();
     pText_->Initialize();
@@ -38,52 +38,55 @@ void PlayScene::Initialize()
     sock_->Init();
     sock_->InitSocket(SOCK_STREAM);
     sock_->Connect("192.168.43.82", SERVERPORT);
+
+    sock_->Recv(&playerNum_);
 }
 
 //XV
 void PlayScene::Update()
 {
-    if (isStart_)
-    {
-        pPlayer1_->SetIsStart(true);
-        pBoss_->SetIsStart(true);
-    }
-    if (isCountDown_)
-    {
-        pTimer_->UpData();
-    }
-    else
-    {
-        sock_->Recv(&isCountDown_);
-        sock_->Recv(&playerNum_);
-    }
+    pPlayer1_->SetIsStart(true);
+    pBoss_->SetIsStart(true);
+
     if (pBoss_->GetIsDead())
     {
         pPlayer1_->SetIsStart(false);
         sock_->Send(pPlayer1_->GetPlayTime());
+        sock_->Recv(&isClear_);
+
         isStart_ = false;
     }
-   
+    if (isClear_)
+    {
+        if (playerNum_ == 1)
+        {
+            p1Time_ = pPlayer1_->GetPlayTime();
+            sock_->Recv(&p2Time_);
+        }
+        else if (playerNum_ == 2)
+        {
+            p2Time_ = pPlayer1_->GetPlayTime();
+            sock_->Recv(&p1Time_);
+        }
+    }
 }
 
 //•`‰æ
 void PlayScene::Draw()
 {
-    if (pTimer_->GetRestTime() >= -1)
+    if (isClear_)
     {
-        std::string resStr = std::to_string((int)pTimer_->GetRestTime() + 1);
-        if (pTimer_->isTimeUpped())
-        {
-            resStr = "START";
-            isStart_ = true;
-        }
-        pText_->Draw(600, 100, resStr.c_str());
+        Transform hp1, hp2;
+        hp1.position_ = XMFLOAT3(-0.5f, 0.2, 0);
+        hp2.position_ = XMFLOAT3(0.5f, 0.2, 0);
+        std::string str1 = std::to_string(p1Time_);
+        std::string str2 = std::to_string(p2Time_);
+        Image::SetTransform(hPlayer1_, hp1);
+        Image::SetTransform(hPlayer2_, hp2);
+        pText_->Draw(400, 300, str1.c_str());
+        pText_->Draw(800, 300, str2.c_str());
     }
     else
-    {
-        isCountDown_ = false;
-    }
-    if (isStart_)
     {
         Transform hp;
         hp.position_ = XMFLOAT3(0, 0.5f, 0);

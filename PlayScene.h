@@ -3,6 +3,7 @@
 #endif
 #pragma once
 #include "Engine/GameObject.h"
+#include <vector>
 
 class Socket;
 class Player;
@@ -14,10 +15,13 @@ class Boss;
 class PlayScene : public GameObject
 {
 	int hPlayer1_, hPlayer2_, hWin_;
+	float p1Time_, p2Time_;
 
 	bool isCountDown_, isStart_;
 
 	float playerNum_;
+
+	bool isClear_;
 
 	Socket* sock_;
 

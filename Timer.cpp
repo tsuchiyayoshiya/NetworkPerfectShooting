@@ -18,6 +18,9 @@ Timer::Timer(float limTime_)
 
 void Timer::UpData()
 {
-	countTime_ += 100.0f / FPS;
-	currentTime_ = countTime_ / 100;
+	if (timeStop_)
+	{
+		countTime_ += 100.0f / FPS;
+		currentTime_ = countTime_ / 100;
+	}
 }
